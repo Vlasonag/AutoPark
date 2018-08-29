@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//resources/resources_en.properties=UTF-8
 encoding//resources/resources_ru.properties=UTF-8
 encoding//src/main/webapp/appointment.jsp=UTF-8
-encoding/<project>=UTF-8
+encoding//src/main/webapp/cars.jsp=UTF-8
+encoding/<project>=ISO-8859-1

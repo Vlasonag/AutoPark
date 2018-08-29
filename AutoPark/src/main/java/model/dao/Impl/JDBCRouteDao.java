@@ -2,6 +2,7 @@ package model.dao.Impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,14 +70,10 @@ public class JDBCRouteDao implements RouteDao{
 	}
 
 	@Override
-	public void deleteById(String id) {
-		try (Statement ps = connection.createStatement()){
+	public void deleteById(int id) throws SQLException {
+		Statement ps = connection.createStatement();
 			ps.executeUpdate(
-					"DELETE FROM `autopark`.`route` WHERE (`route_id` = '" + id + "')");			
-		}
-		catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+					"DELETE FROM `autopark`.`route` WHERE (`route_id` = " + id + ")");			
 		
 	}
 }

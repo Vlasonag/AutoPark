@@ -107,13 +107,10 @@ public class JDBCDriverDao implements DriverDao {
 	}
 
 	@Override
-	public void setConfirmTrueById(int id) {
-		try (Statement ps = connection.createStatement()){
+	public void setConfirmTrueById(int id) throws SQLException {
+		Statement ps = connection.createStatement();
 			ps.executeUpdate("UPDATE `autopark`.`driver` SET `confirmed` = '1' WHERE (`driver_id` = " + id + ")");	
-		}
-		catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+		
 		
 	}
 

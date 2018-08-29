@@ -1,5 +1,6 @@
 package controller.command;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +21,14 @@ public class ConfirmDriverByIdCommand implements Command{
 		final HttpSession session = request.getSession();
 		ROLE role = (ROLE) session.getAttribute("role");
 		if (role.toString().equals("ADMIN")) {
-			int id = Integer.parseInt(request.getParameter("id"));
-			confirmDriverByIdService.confirmDriverById(id);
+			
+			try {
+				int id = Integer.parseInt(request.getParameter("id"));
+				confirmDriverByIdService.confirmDriverById(id);
+			}
+			catch (Exception e){
+				return "/input_integer";
+			}
 			List<Driver> driverlist = confirmDriverByIdService.getUnconfirmedDriver();
 			request.setAttribute("driverlist", driverlist);
 			return "driverconfirmation.jsp";

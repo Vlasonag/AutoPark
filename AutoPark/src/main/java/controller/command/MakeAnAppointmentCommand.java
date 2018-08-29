@@ -29,10 +29,14 @@ public class MakeAnAppointmentCommand implements Command {
 			String login = makeAnAppointmentService.getLoginById(id);
 			String model = makeAnAppointmentService.getModelByNumber(number);
 			int intRoute = Integer.parseInt(route[1]);
-			System.out.println(number);
 			makeAnAppointmentService.setCarBusy(number);
 			makeAnAppointmentService.setDriverBusy(id);
+			try {
 			makeAnAppointmentService.createAnAppointment(route[0], intRoute, number, model, id, login);
+			}
+			catch (Exception e) {
+				return "/repeat_error";
+			}
 			List<Route> routelist = makeAnAppointmentService.getAllRoutes();
 			request.setAttribute("routelist", routelist);
 			List<Car> carlist = makeAnAppointmentService.getAllFreeCars();

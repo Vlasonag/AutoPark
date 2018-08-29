@@ -62,9 +62,10 @@ public class AuthenticationFilter implements Filter {
 		            moveToMenu(req, res, role);
 
 		        } else {
-
+		        	
 		            moveToMenu(req, res, ROLE.UNKNOWN);
 		        }
+		        
 	}
 		    
 
@@ -81,7 +82,7 @@ public class AuthenticationFilter implements Filter {
 
 		        } else if (role.equals(ROLE.ADMIN)) {
 
-			            req.getRequestDispatcher("/wrongrole.jsp").forward(req, res);
+			            req.getRequestDispatcher("/wrong_role").forward(req, res);
 
 			        }
 		        else {

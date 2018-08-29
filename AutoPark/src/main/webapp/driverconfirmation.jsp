@@ -8,21 +8,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="${pageContext.request.contextPath}/driverconfirmation">Confirmation</a>
-	<a href="${pageContext.request.contextPath}/routes">Routes</a>
-	<a href="${pageContext.request.contextPath}/cars">Cars</a>
-	<a href="${pageContext.request.contextPath}/appointment">Make an Appointment</a>
+	<a href="${pageContext.request.contextPath}/driver_confirmation">Confirmation</a><br>
+	<a href="${pageContext.request.contextPath}/routes">Routes</a><br>
+	<a href="${pageContext.request.contextPath}/cars">Cars</a><br>
+	<a href="${pageContext.request.contextPath}/appointment">Make an Appointment</a><br>
 	<a href="${pageContext.request.contextPath}/appointments">Appointments</a>
         <br>
 	<a href="${pageContext.request.contextPath}/logout">Logout</a>
-	<h1>Driver Confirmation</h1>
 	<hr/>
-	<form method="GET" action="confirmdriverbyid">
+	<form method="GET" action="confirm_driver_by_id">
 
             ID: <input type="text" required placeholder="ID" name="id"> 
              <input class="button" type="submit" value="Confirm driver by ID">
 
         </form>
+	<h1>Driver Confirmation</h1>
+	
+	
 	<c:forEach var="driverlist" items="${driverlist}">
 		<ul>
 		

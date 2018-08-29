@@ -8,7 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hello, driver</h1>
+	<a href="${pageContext.request.contextPath}/driver_appointment">Appointment</a>
+	<br>
 	<a href="${pageContext.request.contextPath}/logout">Logout</a>
+	<hr/>
 </body>
 </html>

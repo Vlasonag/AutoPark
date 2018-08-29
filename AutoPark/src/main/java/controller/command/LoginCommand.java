@@ -1,6 +1,6 @@
 package controller.command;
 
-import java.sql.SQLException;
+import java.sql.SQLException; 
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,8 +24,7 @@ public class LoginCommand implements Command{
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return "/error";
 		}
 		return "/index.jsp";
 	}

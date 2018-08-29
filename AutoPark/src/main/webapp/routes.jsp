@@ -8,15 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="${pageContext.request.contextPath}/driverconfirmation">Confirmation</a>
-	<a href="${pageContext.request.contextPath}/routes">Routes</a>
-	<a href="${pageContext.request.contextPath}/cars">Cars</a>
-	<a href="${pageContext.request.contextPath}/appointment">Make an Appointment</a>
+	<a href="${pageContext.request.contextPath}/driver_confirmation">Confirmation</a><br>
+	<a href="${pageContext.request.contextPath}/routes">Routes</a><br>
+	<a href="${pageContext.request.contextPath}/cars">Cars</a><br>
+	<a href="${pageContext.request.contextPath}/appointment">Make an Appointment</a><br>
 	<a href="${pageContext.request.contextPath}/appointments">Appointments</a>
 	<br>
 	<a href="${pageContext.request.contextPath}/logout">Logout</a>
 	<hr/>
-	<form method="GET" action="createroute">
+	<form method="GET" action="create_route">
 
             Distance: <input type="text" required placeholder="distance" name="distance">
              Name: <input type="text" required placeholder="name" name="name">
@@ -24,7 +24,7 @@
              <input class="button" type="submit" value="Create Route">
 
         </form>
-        <form method="GET" action="deleteroute">
+        <form method="GET" action="delete_route">
 
             ID: <input type="text" required placeholder="id" name="id"> 
              <input class="button" type="submit" value="Delete Route by ID">

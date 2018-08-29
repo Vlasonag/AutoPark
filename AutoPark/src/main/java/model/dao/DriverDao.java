@@ -9,7 +9,7 @@ import model.entity.Driver;
 public interface DriverDao extends GenericDao<Driver> {
 	boolean isDriverExist(String login,String password) throws SQLException;
 	List<Driver> findAllUnconfirmed();
-	void setConfirmTrueById(int id);
+	void setConfirmTrueById(int id) throws SQLException;
 	boolean isDriverConfirmed(String login, String password);
 	List<Driver> findAllFreeDrivers();
 	String getLoginById(int id);

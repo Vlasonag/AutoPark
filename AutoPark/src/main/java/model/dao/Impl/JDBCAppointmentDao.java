@@ -2,6 +2,7 @@ package model.dao.Impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +18,11 @@ public class JDBCAppointmentDao implements AppointmentDao{
         this.connection = connection;
     }
 	@Override
-	public void create(AppointmentDTO entity) {
-		try (Statement ps = connection.createStatement()){
+	public void create(AppointmentDTO entity) throws SQLException {
+		Statement ps = connection.createStatement();
 			ps.executeUpdate(
 					"INSERT INTO `autopark`.`appointment` (`appointment_route_name`, `appointment_route_distance`, `appointment_car_number`, `appointment_car_model`, `appointment_driver_id`, `appointment_driver_login`) VALUES ('"+entity.getRoute_name()+"', '"+entity.getRoute_distance()+"', '"+entity.getCar_number()+"', '"+entity.getCar_model()+"', '"+entity.getDriver_id()+"', '"+entity.getDriver_login()+"');");			
 		}
-		catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-	}
 
 	@Override
 	public AppointmentDTO findById(int id) {
@@ -82,6 +79,36 @@ public class JDBCAppointmentDao implements AppointmentDao{
             throw new RuntimeException(e);
         }
 		
+		
+	}
+	@Override
+	public AppointmentDTO getAppointmentByLogin(String login) {
+		final char dm = (char) 34;
+		try (Statement ps = connection.createStatement()){
+			ResultSet rs = ps.executeQuery(
+					"SELECT * FROM appointment WHERE appointment_driver_login=" + dm + login + dm + "");
+			if(rs.next()){
+				return new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7));
+			}else {
+				return null;
+			}
+		}
+		catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+		
+	}
+	@Override
+	public void confirmAppointment(String login) {
+		final char dm = (char) 34;
+		try (Statement ps = connection.createStatement()){
+			ps.executeUpdate(
+					"UPDATE `autopark`.`appointment` SET `appointment_is_confirmed` = '1' WHERE `appointment_driver_login` = " + dm + login + dm + ";");
+					
+		}
+		catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 		
 	}
 

@@ -8,7 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Logout before changing type of user</h1>
+<a href="${pageContext.request.contextPath}/driver_appointment">Appointment</a>
+	<br>
 	<a href="${pageContext.request.contextPath}/logout">Logout</a>
+	<hr/>
+	<h1>There is no appointment at the moment</h1>
 </body>
 </html>

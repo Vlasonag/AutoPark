@@ -19,8 +19,13 @@ public class DeleteRouteCommand implements Command{
 		final HttpSession session = request.getSession();
 		ROLE role = (ROLE) session.getAttribute("role");
 		if (role.toString().equals("ADMIN")) {
-			String id = request.getParameter("id");
-			deleteRouteService.deleteRoute(id);
+			try {
+				int id = Integer.parseInt(request.getParameter("id"));
+				deleteRouteService.deleteRoute(id);
+			}
+			catch (Exception e){
+				return "/input_integer";
+			}
 			List<Route> routelist = deleteRouteService.getAll();		
 			request.setAttribute("routelist", routelist);
 			return "routes.jsp";

@@ -1,5 +1,6 @@
 package controller.command;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,16 +20,28 @@ public class CreateCarCommand implements Command {
 		
 		final HttpSession session = request.getSession();
 		ROLE role = (ROLE) session.getAttribute("role");
-		if (role.toString().equals("ADMIN")) {
-			String number = request.getParameter("number");
-			String model = request.getParameter("model");
-			createCarService.createRoute(number, model);
-			List<Car> carlist = createCarService.getAll();		
-			request.setAttribute("carlist", carlist);
-			return "cars.jsp";
-		}
-		else {
+		
+			try {
+				if (role.toString().equals("ADMIN")) {
+					String number = new String(request.getParameter("number").getBytes("ISO-8859-1"), "UTF-8");				
+					String model = new String(request.getParameter("model").getBytes("ISO-8859-1"), "UTF-8");	
+					try {
+						createCarService.createRoute(number, model);
+					}
+					catch (Exception e) {
+						return "/error";
+					}
+					List<Car> carlist = createCarService.getAll();		
+					request.setAttribute("carlist", carlist);
+					return "cars.jsp";
+				}
+				
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return "/logout";
 		}
+		
 	}
-}
+

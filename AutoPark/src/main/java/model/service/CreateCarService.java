@@ -1,5 +1,6 @@
 package model.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import model.dao.CarDao;
@@ -12,7 +13,7 @@ public class CreateCarService {
         CarDao dao = factory.createCarDao();
         return dao.findAll();
 	}
-	 public void createRoute(String model, String number) {
+	 public void createRoute(String model, String number) throws SQLException {
 		 Car entity = new Car(model, number);
 		 DaoFactory factory = DaoFactory.getInstance();		
 	     CarDao dao = factory.createCarDao();

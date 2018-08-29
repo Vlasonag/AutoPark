@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hello, admin</h1>
-	<a href="${pageContext.request.contextPath}/driverconfirmation">Confirmation</a>
-	<a href="${pageContext.request.contextPath}/routes">Routes</a>
-	<a href="${pageContext.request.contextPath}/cars">Cars</a>
-	<a href="${pageContext.request.contextPath}/appointment">Make an Appointment</a>
+	<a href="${pageContext.request.contextPath}/driver_confirmation">Confirmation</a><br>
+	<a href="${pageContext.request.contextPath}/routes">Routes</a><br>
+	<a href="${pageContext.request.contextPath}/cars">Cars</a><br>
+	<a href="${pageContext.request.contextPath}/appointment">Make an Appointment</a><br>
 	<a href="${pageContext.request.contextPath}/appointments">Appointments</a>
 	<br>
 	<a href="${pageContext.request.contextPath}/logout">Logout</a>
+	<hr/>
 </body>
 </html>

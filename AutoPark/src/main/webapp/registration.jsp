@@ -3,16 +3,16 @@
 <%@ page isELIgnored="false" %>
 <html>
 <body>
-<a href="${pageContext.request.contextPath}/index.jsp">Login</a><br>
-<a href="${pageContext.request.contextPath}/registration.jsp">Registration</a><br>
-<a href="${pageContext.request.contextPath}/admin_login.jsp">Login as Admin</a>
+<a href="${pageContext.request.contextPath}/login_page">Login</a><br>
+<a href="${pageContext.request.contextPath}/registration_page">Registration</a><br>
+<a href="${pageContext.request.contextPath}/admin_login_page">Login as Admin</a>
 	<br>
-	<h1>Регистрация</h1><br>
-        <form method="GET" action="/AuthenticationFilter">
+	<h1>Registration</h1><br>
+        <form method="POST" action="registration">
 
             <input type="text" required placeholder="login" name="login"><br>
             <input type="password" required placeholder="password" name="password"><br><br>
-            <input class="button" type="submit" value="Войти">
+            <input class="button" type="submit" value="Register">
 
         </form>
 </body>

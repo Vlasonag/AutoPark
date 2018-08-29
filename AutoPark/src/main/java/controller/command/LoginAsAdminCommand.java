@@ -1,7 +1,9 @@
 package controller.command;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import model.ENUM.ROLE;
 import model.service.LoginAsAdminService;
 
 public class LoginAsAdminCommand implements Command {

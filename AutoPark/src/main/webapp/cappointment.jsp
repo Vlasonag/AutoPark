@@ -8,13 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="${pageContext.request.contextPath}/driverconfirmation">Confirmation</a>
-	<a href="${pageContext.request.contextPath}/routes">Routes</a>
-	<a href="${pageContext.request.contextPath}/cars">Cars</a>
-	<a href="${pageContext.request.contextPath}/appointment">Make an Appointment</a>
+	<a href="${pageContext.request.contextPath}/driver_confirmation">Confirmation</a><br>
+	<a href="${pageContext.request.contextPath}/routes">Routes</a><br>
+	<a href="${pageContext.request.contextPath}/cars">Cars</a><br>
+	<a href="${pageContext.request.contextPath}/appointment">Make an Appointment</a><br>
 	<a href="${pageContext.request.contextPath}/appointments">Appointments</a>
 	<br>
 	<a href="${pageContext.request.contextPath}/logout">Logout</a>
+	<hr/>
 	<c:forEach var="applist" items="${applist}">
 		<h3>Appointment</h3>
 		|Route name: <c:out value="${applist.route_name}"/>|
@@ -25,7 +26,7 @@
 		Driver login: <c:out value="${applist.driver_login}"/>|
 		Is confirmed: <c:out value="${applist.confirmed}"/>|
 		
-		<form method="POST" action="cancelappointment">
+		<form method="POST" action="cancel_appointment">
 			
         	<input class="button" type="submit" value="Cancel this appointment">
         	<input type="hidden" name="number" value="${applist.car_number}">

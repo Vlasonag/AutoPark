@@ -3,9 +3,9 @@
 <%@ page isELIgnored="false" %>
 <html>
 <body>
-<a href="${pageContext.request.contextPath}/index.jsp">Login</a><br>
-<a href="${pageContext.request.contextPath}/registration.jsp">Registration</a><br>
-<a href="${pageContext.request.contextPath}/admin_login.jsp">Login as Admin</a>
+<a href="${pageContext.request.contextPath}/login_page">Login</a><br>
+<a href="${pageContext.request.contextPath}/registration_page">Registration</a><br>
+<a href="${pageContext.request.contextPath}/admin_login_page">Login as Admin</a>
  	<br>
 	<h1>Login as Admin</h1><br>
         <form method="POST" action="AuthAdminFilter">

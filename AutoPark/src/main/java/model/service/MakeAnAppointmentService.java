@@ -1,5 +1,6 @@
 package model.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import model.dao.AppointmentDao;
@@ -48,7 +49,7 @@ public class MakeAnAppointmentService {
         CarDao dao = factory.createCarDao();
 		dao.setCarBusy(number);
 	}
-	public void createAnAppointment(String r_name, int r_distance, String c_number, String c_model, int d_id, String d_login) {
+	public void createAnAppointment(String r_name, int r_distance, String c_number, String c_model, int d_id, String d_login) throws SQLException {
 		
 		AppointmentDTO entity = new AppointmentDTO(r_name, r_distance, c_number, c_model, d_id, d_login);
 		DaoFactory factory = DaoFactory.getInstance();		

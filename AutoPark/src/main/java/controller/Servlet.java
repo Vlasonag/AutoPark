@@ -1,6 +1,6 @@
 package controller;
 
-import java.io.IOException;   
+import java.io.IOException;    
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.service.CancelAppointmentService;
+import model.service.ConfirmAppointmentService;
 import model.service.ConfirmDriverByIdService;
 import model.service.CreateCarService;
 import model.service.CreateRouteService;
 import model.service.DeleteCarService;
 import model.service.DeleteRouteService;
+import model.service.DriverAppointmentService;
 import model.service.DriverConfirmationService;
 import model.service.LoginAsAdminService;
 import model.service.LoginService;
@@ -26,23 +28,32 @@ import model.service.ShowAllAppointmentsService;
 import model.service.ShowAppointmentsService;
 import model.service.ShowCarsService;
 import model.service.ShowRoutesService;
+import controller.command.AdminLoginPageCommand;
 import controller.command.AllAppointmentCommand;
 import controller.command.AppointmentCommand;
 import controller.command.CancelAppointmentCommand;
 import controller.command.CarCommand;
 import controller.command.Command;
+import controller.command.ConfirmAppointmentCommand;
 import controller.command.ConfirmDriverByIdCommand;
 import controller.command.CreateCarCommand;
 import controller.command.CreateRouteCommand;
 import controller.command.DeleteCarCommand;
 import controller.command.DeleteRouteCommand;
+import controller.command.DriverAppointmentCommand;
 import controller.command.DriverConfirmationCommand;
+import controller.command.ErrorCommand;
+import controller.command.InputIntegerCommand;
 import controller.command.LoginAsAdminCommand;
 import controller.command.LoginCommand;
+import controller.command.LoginPageCommand;
 import controller.command.LogoutCommand;
 import controller.command.MakeAnAppointmentCommand;
 import controller.command.RegistrationCommand;
+import controller.command.RegistrationPageCommand;
+import controller.command.RepeatErrorCommand;
 import controller.command.RoutesCommand;
+import controller.command.WrongRoleErrorCommand;
 
 /**
  * Servlet implementation class Servlet
@@ -54,22 +65,31 @@ public class Servlet extends HttpServlet {
 	LoginService ls = new LoginService();
 	
 	public void init(){
-		commands.put("loginasadmin", new LoginAsAdminCommand(new LoginAsAdminService()));
+		commands.put("login_as_admin", new LoginAsAdminCommand(new LoginAsAdminService()));
         commands.put("login", new LoginCommand(new LoginService()));
         commands.put("registration", new RegistrationCommand(new RegistrationService()));
         commands.put("logout", new LogoutCommand());
-        commands.put("driverconfirmation", new DriverConfirmationCommand(new DriverConfirmationService()));
-        commands.put("confirmdriverbyid", new ConfirmDriverByIdCommand(new ConfirmDriverByIdService()));
+        commands.put("driver_confirmation", new DriverConfirmationCommand(new DriverConfirmationService()));
+        commands.put("confirm_driver_by_id", new ConfirmDriverByIdCommand(new ConfirmDriverByIdService()));
         commands.put("routes", new RoutesCommand(new ShowRoutesService()));
-        commands.put("createroute", new CreateRouteCommand(new CreateRouteService()));
-        commands.put("deleteroute", new DeleteRouteCommand(new DeleteRouteService()));
+        commands.put("create_route", new CreateRouteCommand(new CreateRouteService()));
+        commands.put("delete_route", new DeleteRouteCommand(new DeleteRouteService()));
         commands.put("cars", new CarCommand(new ShowCarsService()));
-        commands.put("createcar", new CreateCarCommand(new CreateCarService()));
-        commands.put("deletecar", new DeleteCarCommand(new DeleteCarService()));
+        commands.put("create_car", new CreateCarCommand(new CreateCarService()));
+        commands.put("delete_car", new DeleteCarCommand(new DeleteCarService()));
         commands.put("appointment", new AppointmentCommand(new ShowAppointmentsService()));
-        commands.put("makeanappointment", new MakeAnAppointmentCommand(new MakeAnAppointmentService()));
+        commands.put("make_an_appointment", new MakeAnAppointmentCommand(new MakeAnAppointmentService()));
         commands.put("appointments", new AllAppointmentCommand(new ShowAllAppointmentsService()));
-        commands.put("cancelappointment", new CancelAppointmentCommand(new CancelAppointmentService()));
+        commands.put("cancel_appointment", new CancelAppointmentCommand(new CancelAppointmentService()));
+        commands.put("driver_appointment", new DriverAppointmentCommand(new DriverAppointmentService()));
+        commands.put("confirm_appointment", new ConfirmAppointmentCommand(new ConfirmAppointmentService()));
+        commands.put("input_integer", new InputIntegerCommand());
+        commands.put("error", new ErrorCommand());
+        commands.put("repeat_error", new RepeatErrorCommand());
+        commands.put("login_page", new LoginPageCommand());
+        commands.put("registration_page", new RegistrationPageCommand());
+        commands.put("admin_login_page", new AdminLoginPageCommand());
+        commands.put("wrong_role", new WrongRoleErrorCommand());
     }
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

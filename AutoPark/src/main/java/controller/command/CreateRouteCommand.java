@@ -1,5 +1,6 @@
 package controller.command;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,17 +20,27 @@ public class CreateRouteCommand implements Command{
 		
 		final HttpSession session = request.getSession();
 		ROLE role = (ROLE) session.getAttribute("role");
+		try{
 		if (role.toString().equals("ADMIN")) {
 			String distance = request.getParameter("distance");
-			String name = request.getParameter("name");
-			createRouteService.createRoute(distance, name);
+			String name = new String(request.getParameter("name").getBytes("ISO-8859-1"), "UTF-8");
+			try {
+				createRouteService.createRoute(distance, name);
+			}
+			catch (Exception e) {
+				return "/error";
+			}
 			List<Route> routelist = createRouteService.getAll();		
 			request.setAttribute("routelist", routelist);
 			return "routes.jsp";
+			}
 		}
-		else {
+		catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 			return "/logout";
-		}
+		
 	}
 
 }

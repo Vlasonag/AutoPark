@@ -23,8 +23,6 @@ public class CancelAppointmentCommand implements Command{
 		if (role.toString().equals("ADMIN")) {
 			String number = request.getParameter("number");
 			String id = request.getParameter("id");
-			System.out.println(id);
-			System.out.println(number);
 			cancelAppointmentService.cancelAppointment(id, number);
 			List<AppointmentDTO> applist = cancelAppointmentService.getAll();
 			request.setAttribute("applist", applist);
