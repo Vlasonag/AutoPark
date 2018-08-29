@@ -4,15 +4,15 @@ public class AppointmentDTO {
 
 	
 	private String route_name;
-	private String route_distance;
+	private int route_distance;
 	private String car_number;
 	private String car_model;
-	private String driver_id;
+	private int driver_id;
 	private String driver_login;
 	private boolean isConfirmed;
 	
-	public AppointmentDTO(String route_name, String route_distance, String car_number,
-			String car_model, String driver_id, String driver_login) {
+	public AppointmentDTO(String route_name, int route_distance, String car_number,
+			String car_model, int driver_id, String driver_login) {
 		this.route_name= route_name;
 		this.route_distance =route_distance;
 		this.car_number = car_number;
@@ -21,8 +21,8 @@ public class AppointmentDTO {
 		this.driver_login = driver_login;
 	}
 
-	public AppointmentDTO(String route_name, String route_distance, String car_number,
-			String car_model, String driver_id, String driver_login, boolean isConfirmed) {
+	public AppointmentDTO(String route_name, int route_distance, String car_number,
+			String car_model, int driver_id, String driver_login, boolean isConfirmed) {
 		this.route_name= route_name;
 		this.route_distance =route_distance;
 		this.car_number = car_number;
@@ -40,11 +40,11 @@ public class AppointmentDTO {
 		this.route_name = route_name;
 	}
 
-	public String getRoute_distance() {
+	public int getRoute_distance() {
 		return route_distance;
 	}
 
-	public void setRoute_distance(String route_distance) {
+	public void setRoute_distance(int route_distance) {
 		this.route_distance = route_distance;
 	}
 
@@ -64,11 +64,11 @@ public class AppointmentDTO {
 		this.car_model = car_model;
 	}
 
-	public String getDriver_id() {
+	public int getDriver_id() {
 		return driver_id;
 	}
 
-	public void setDriver_id(String driver_id) {
+	public void setDriver_id(int driver_id) {
 		this.driver_id = driver_id;
 	}
 

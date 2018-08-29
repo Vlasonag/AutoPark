@@ -107,9 +107,9 @@ public class JDBCDriverDao implements DriverDao {
 	}
 
 	@Override
-	public void setConfirmTrueById(String id) {
+	public void setConfirmTrueById(int id) {
 		try (Statement ps = connection.createStatement()){
-			ps.executeUpdate("UPDATE `autopark`.`driver` SET `confirmed` = '1' WHERE (`driver_id` = '" + id + "')");	
+			ps.executeUpdate("UPDATE `autopark`.`driver` SET `confirmed` = '1' WHERE (`driver_id` = " + id + ")");	
 		}
 		catch (Exception e) {
             throw new RuntimeException(e);
@@ -155,7 +155,7 @@ public class JDBCDriverDao implements DriverDao {
 	}
 
 	@Override
-	public String getLoginById(String id) {
+	public String getLoginById(int id) {
 		String login = null;
 		try (Statement ps = connection.createStatement()){
 			ResultSet rs = ps.executeQuery(
@@ -171,9 +171,9 @@ public class JDBCDriverDao implements DriverDao {
 	}
 
 	@Override
-	public void setDriverBusy(String id) {
+	public void setDriverBusy(int id) {
 		try (Statement ps = connection.createStatement()){
-			ps.executeUpdate("UPDATE `autopark`.`driver` SET `driver_free` = '0' WHERE (`driver_id` = '" + id + "')");	
+			ps.executeUpdate("UPDATE `autopark`.`driver` SET `driver_free` = '0' WHERE (`driver_id` = " + id + ")");	
 		}
 		catch (Exception e) {
             throw new RuntimeException(e);

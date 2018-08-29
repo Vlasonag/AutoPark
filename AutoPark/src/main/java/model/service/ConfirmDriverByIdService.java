@@ -7,7 +7,7 @@ import model.dao.DriverDao;
 import model.entity.Driver;
 
 public class ConfirmDriverByIdService {
-	public void confirmDriverById(String id) {
+	public void confirmDriverById(int id) {
 		DaoFactory factory = DaoFactory.getInstance();		
 	    DriverDao dao = factory.createDriverDao();
 		dao.setConfirmTrueById(id);

@@ -40,7 +40,7 @@ public class JDBCAppointmentDao implements AppointmentDao{
 			ResultSet rs = ps.executeQuery(
 					"SELECT * FROM appointment");
 			while ( rs.next() ){
-				applist.add(new AppointmentDTO(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7)));
+				applist.add(new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7)));
 			}
 		}
 		catch (Exception e) {

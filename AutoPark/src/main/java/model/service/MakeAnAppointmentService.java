@@ -33,12 +33,12 @@ public class MakeAnAppointmentService {
         CarDao dao = factory.createCarDao();
 		return dao.getModelByNumber(number);
 	}
-	public String getLoginById(String id) {
+	public String getLoginById(int id) {
 		DaoFactory factory = DaoFactory.getInstance();		
         DriverDao dao = factory.createDriverDao();
 		return dao.getLoginById(id);
 	}
-	public void setDriverBusy(String id) {
+	public void setDriverBusy(int id) {
 		DaoFactory factory = DaoFactory.getInstance();		
         DriverDao dao = factory.createDriverDao();
 		dao.setDriverBusy(id);
@@ -48,7 +48,7 @@ public class MakeAnAppointmentService {
         CarDao dao = factory.createCarDao();
 		dao.setCarBusy(number);
 	}
-	public void createAnAppointment(String r_name, String r_distance, String c_number, String c_model, String d_id, String d_login) {
+	public void createAnAppointment(String r_name, int r_distance, String c_number, String c_model, int d_id, String d_login) {
 		
 		AppointmentDTO entity = new AppointmentDTO(r_name, r_distance, c_number, c_model, d_id, d_login);
 		DaoFactory factory = DaoFactory.getInstance();		

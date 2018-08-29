@@ -1,6 +1,6 @@
 package controller;
 
-import java.io.IOException;  
+import java.io.IOException;   
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,10 +83,10 @@ public class Servlet extends HttpServlet {
         System.out.println(page);
         request.getRequestDispatcher(page).forward(request,response);
 	}
-	public static void main(String[] args) throws UnsupportedEncodingException {
+	/*public static void main(String[] args) throws UnsupportedEncodingException {
 		ResourceBundle res1 = ResourceBundle.getBundle("resources_en");
 		System.out.println(new String(res1.getString("name").getBytes("ISO-8859-1"), "UTF-8"));
-	}
+	}*/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");

@@ -20,7 +20,7 @@ public class ConfirmDriverByIdCommand implements Command{
 		final HttpSession session = request.getSession();
 		ROLE role = (ROLE) session.getAttribute("role");
 		if (role.toString().equals("ADMIN")) {
-			String id = request.getParameter("id");
+			int id = Integer.parseInt(request.getParameter("id"));
 			confirmDriverByIdService.confirmDriverById(id);
 			List<Driver> driverlist = confirmDriverByIdService.getUnconfirmedDriver();
 			request.setAttribute("driverlist", driverlist);
