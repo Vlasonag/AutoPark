@@ -42,7 +42,7 @@ public class JDBCRouteDao implements RouteDao{
 			ResultSet rs = ps.executeQuery(
 					"SELECT * FROM route");
 			while ( rs.next() ){
-				routelist.add(new Route(rs.getInt(1), rs.getString(2), rs.getString(3)));
+				routelist.add(new Route(rs.getInt(1), rs.getInt(2), rs.getString(3)));
 			}
 		}
 		catch (Exception e) {

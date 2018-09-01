@@ -14,5 +14,6 @@ public interface DriverDao extends GenericDao<Driver> {
 	List<Driver> findAllFreeDrivers();
 	String getLoginById(int id);
 	void setDriverBusy(int id);
+	boolean isDriverConfirmedAndExist(String login, String password);
 	
 }

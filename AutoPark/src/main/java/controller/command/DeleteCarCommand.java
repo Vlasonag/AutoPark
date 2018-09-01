@@ -19,21 +19,14 @@ public class DeleteCarCommand implements Command{
 	public String execute(HttpServletRequest request) {
 		final HttpSession session = request.getSession();
 		ROLE role = (ROLE) session.getAttribute("role");
-		try {
 		if (role.toString().equals("ADMIN")) {
-			String number = new String(request.getParameter("number").getBytes("ISO-8859-1"), "UTF-8");	
+			String number = request.getParameter("number");	
 			System.out.println(number);
 			deleteCarService.deleteCar(number);
 			List<Car> carlist = deleteCarService.getAll();		
 			request.setAttribute("carlist", carlist);
-			return "cars.jsp";
-			}
+			return "/cars";
 		}
-		catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		return "/logout";
 	
 	}

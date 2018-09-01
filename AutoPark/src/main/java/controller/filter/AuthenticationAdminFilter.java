@@ -80,14 +80,14 @@ public class AuthenticationAdminFilter implements Filter {
 
     	if (role.equals(ROLE.ADMIN)) {
 
-            req.getRequestDispatcher("/login_as_admin").forward(req, res);
+            req.getRequestDispatcher("/driver_confirmation").forward(req, res);
 
         } else if (role.equals(ROLE.DRIVER)) {
 
 	            req.getRequestDispatcher("/wrong_role").forward(req, res);
 	        }
         else {
-        	req.getRequestDispatcher("/login_as_admin").forward(req, res);
+        	req.getRequestDispatcher("/driver_confirmation").forward(req, res);
         }
         
 	}

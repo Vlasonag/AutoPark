@@ -115,7 +115,7 @@ public class JDBCDriverDao implements DriverDao {
 	}
 
 	@Override
-	public boolean isDriverConfirmed(String login, String password) {
+	public boolean isDriverConfirmedAndExist(String login, String password) {
 		List<Driver> driverlist = new ArrayList<>();
 		try (Statement ps = connection.createStatement()){
 			ResultSet rs = ps.executeQuery(
@@ -176,6 +176,28 @@ public class JDBCDriverDao implements DriverDao {
             throw new RuntimeException(e);
         }
 		
+	}
+
+	@Override
+	public boolean isDriverConfirmed(String login, String password) {
+		final char dm = (char) 34;
+		List<Driver> driverlist = new ArrayList<>();
+		try (Statement ps = connection.createStatement()){
+			ResultSet rs = ps.executeQuery(
+					"SELECT * FROM driver WHERE driver_login="+ dm + login + dm +";");
+			while ( rs.next() ){
+				driverlist.add(new Driver(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4)));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		for(int i = 0; i < driverlist.size(); i++) {
+			if (driverlist.get(i).isConfirmed()) {
+				return true;
+			}		
+		}
+		return false;
 	}
 }
 

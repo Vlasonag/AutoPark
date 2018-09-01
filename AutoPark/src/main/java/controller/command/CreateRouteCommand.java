@@ -22,10 +22,15 @@ public class CreateRouteCommand implements Command{
 		ROLE role = (ROLE) session.getAttribute("role");
 		try{
 		if (role.toString().equals("ADMIN")) {
-			String distance = request.getParameter("distance");
+			int distance = Integer.parseInt(new String(request.getParameter("distance").getBytes("ISO-8859-1"), "UTF-8"));			
 			String name = new String(request.getParameter("name").getBytes("ISO-8859-1"), "UTF-8");
+			if(name.equals("")) {
+				return "/input_integer";
+			}
 			try {
-				createRouteService.createRoute(distance, name);
+				
+					createRouteService.createRoute(distance, name);
+				
 			}
 			catch (Exception e) {
 				return "/error";
@@ -35,9 +40,8 @@ public class CreateRouteCommand implements Command{
 			return "routes.jsp";
 			}
 		}
-		catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		catch (Exception e) {
+			return "/input_integer";
 		}
 			return "/logout";
 		

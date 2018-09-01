@@ -24,7 +24,7 @@ public class CreateCarCommand implements Command {
 			try {
 				if (role.toString().equals("ADMIN")) {
 					String number = new String(request.getParameter("number").getBytes("ISO-8859-1"), "UTF-8");				
-					String model = new String(request.getParameter("model").getBytes("ISO-8859-1"), "UTF-8");	
+					String model = new String(request.getParameter("model").getBytes("ISO-8859-1"), "UTF-8");
 					try {
 						createCarService.createRoute(number, model);
 					}
@@ -33,12 +33,11 @@ public class CreateCarCommand implements Command {
 					}
 					List<Car> carlist = createCarService.getAll();		
 					request.setAttribute("carlist", carlist);
-					return "cars.jsp";
+					return "/cars";
 				}
 				
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (Exception e) {
+				return "/input_integer";
 			}
 			return "/logout";
 		}

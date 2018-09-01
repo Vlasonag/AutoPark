@@ -21,6 +21,7 @@ public class DeleteRouteCommand implements Command{
 		if (role.toString().equals("ADMIN")) {
 			try {
 				int id = Integer.parseInt(request.getParameter("id"));
+				System.out.println(id);
 				deleteRouteService.deleteRoute(id);
 			}
 			catch (Exception e){

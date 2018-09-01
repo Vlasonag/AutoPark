@@ -14,7 +14,7 @@ public class CancelAppointmentService {
 	}
 	
 	public void cancelAppointment(String id, String number) {
-		DaoFactory factory = DaoFactory.getInstance();		
+		DaoFactory factory = DaoFactory.getInstance();
         AppointmentDao dao = factory.createAppointmentDao();
         dao.cancelAppointment(id, number);
 	}

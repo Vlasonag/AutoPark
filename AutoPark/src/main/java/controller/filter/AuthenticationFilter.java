@@ -62,8 +62,12 @@ public class AuthenticationFilter implements Filter {
 		            moveToMenu(req, res, role);
 
 		        } else {
-		        	
+		        	 final ROLE role = ROLE.DRIVER;
+			            req.getSession().setAttribute("password", password);
+			            req.getSession().setAttribute("login", login);
+			            req.getSession().setAttribute("role", role);
 		            moveToMenu(req, res, ROLE.UNKNOWN);
+		           
 		        }
 		        
 	}
@@ -78,7 +82,7 @@ public class AuthenticationFilter implements Filter {
 
 		         if (role.equals(ROLE.DRIVER)) {
 
-		            req.getRequestDispatcher("/login").forward(req, res);
+		            req.getRequestDispatcher("/driver_appointment").forward(req, res);
 
 		        } else if (role.equals(ROLE.ADMIN)) {
 
@@ -86,7 +90,7 @@ public class AuthenticationFilter implements Filter {
 
 			        }
 		        else {
-		        	req.getRequestDispatcher("/login").forward(req, res);
+		        	req.getRequestDispatcher("/driver_appointment").forward(req, res);
 		        }
 		        
 		    }   

@@ -2,6 +2,7 @@ package controller.command;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 public class RegistrationPageCommand implements Command{
 
 	@Override

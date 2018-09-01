@@ -2,11 +2,11 @@ package controller.command;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class InputIntegerCommand  implements Command{
+public class PasswordExistPageCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		return "wronginput.jsp";
+		return "passwordexist.jsp";
 	}
 
 }

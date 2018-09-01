@@ -14,7 +14,7 @@ public class LoginAsAdminService {
 		List<Admin> al = dao.findAll();
 		for(int i = 0; i < al.size(); i++) {
 			if ((login.equals(al.get(i).getLogin())) && (password.equals(al.get(i).getPassword()))) {
-				return true;
+				return false;
 			}		
 		}
 		return false;

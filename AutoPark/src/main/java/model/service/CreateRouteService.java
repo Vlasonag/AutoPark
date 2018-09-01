@@ -13,7 +13,7 @@ public class CreateRouteService {
         RouteDao dao = factory.createRouteDao();
         return dao.findAll();
 	}
-	 public void createRoute(String distance, String name) throws SQLException {
+	 public void createRoute(int distance, String name) throws SQLException {
 		 Route entity = new Route(distance, name);
 		 DaoFactory factory = DaoFactory.getInstance();		
 	     RouteDao dao = factory.createRouteDao();

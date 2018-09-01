@@ -46,9 +46,11 @@ import controller.command.ErrorCommand;
 import controller.command.InputIntegerCommand;
 import controller.command.LoginAsAdminCommand;
 import controller.command.LoginCommand;
+import controller.command.LoginExistPageCommand;
 import controller.command.LoginPageCommand;
 import controller.command.LogoutCommand;
 import controller.command.MakeAnAppointmentCommand;
+import controller.command.PasswordExistPageCommand;
 import controller.command.RegistrationCommand;
 import controller.command.RegistrationPageCommand;
 import controller.command.RepeatErrorCommand;
@@ -90,6 +92,8 @@ public class Servlet extends HttpServlet {
         commands.put("registration_page", new RegistrationPageCommand());
         commands.put("admin_login_page", new AdminLoginPageCommand());
         commands.put("wrong_role", new WrongRoleErrorCommand());
+        commands.put("password_exist_error", new PasswordExistPageCommand());
+        commands.put("login_exist_error", new LoginExistPageCommand());
     }
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -103,10 +107,7 @@ public class Servlet extends HttpServlet {
         System.out.println(page);
         request.getRequestDispatcher(page).forward(request,response);
 	}
-	/*public static void main(String[] args) throws UnsupportedEncodingException {
-		ResourceBundle res1 = ResourceBundle.getBundle("resources_en");
-		System.out.println(new String(res1.getString("name").getBytes("ISO-8859-1"), "UTF-8"));
-	}*/
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");

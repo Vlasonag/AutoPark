@@ -2,16 +2,16 @@ package model.entity;
 
 public class Route {
 	private int id;
-	private String distance;
+	private int distance;
 	private String name;
 	
 	
 	
-	public Route(String distance, String name) {
+	public Route(int distance, String name) {
 		this.distance = distance;
 		this.name = name;
 	}
-	public Route(int id, String distance, String name) {
+	public Route(int id, int distance, String name) {
 		this.id = id;
 		this.distance = distance;
 		this.name = name;
@@ -23,10 +23,10 @@ public class Route {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getDistance() {
+	public int getDistance() {
 		return distance;
 	}
-	public void setDistance(String distance) {
+	public void setDistance(int distance) {
 		this.distance = distance;
 	}
 	public String getName() {

@@ -12,6 +12,6 @@ public class LoginService {
 	{
 		DaoFactory factory = DaoFactory.getInstance();		
         DriverDao dao = factory.createDriverDao();
-		return dao.isDriverConfirmed(login, password);
+		return dao.isDriverConfirmedAndExist(login, password);
 	}
 }

@@ -23,19 +23,21 @@ public class MakeAnAppointmentCommand implements Command {
 		final HttpSession session = request.getSession();
 		ROLE role = (ROLE) session.getAttribute("role");
 		if (role.toString().equals("ADMIN")) {
-			int id = Integer.parseInt(request.getParameter("driver"));
-			String[] route = request.getParameter("route").split(" ");
-			String number = request.getParameter("car");
-			String login = makeAnAppointmentService.getLoginById(id);
-			String model = makeAnAppointmentService.getModelByNumber(number);
-			int intRoute = Integer.parseInt(route[1]);
-			makeAnAppointmentService.setCarBusy(number);
-			makeAnAppointmentService.setDriverBusy(id);
+			
+			
 			try {
-			makeAnAppointmentService.createAnAppointment(route[0], intRoute, number, model, id, login);
+				int id = Integer.parseInt(request.getParameter("driver"));
+				String[] route = request.getParameter("route").split(" ");
+				String number = request.getParameter("car");
+				String login = makeAnAppointmentService.getLoginById(id);
+				String model = makeAnAppointmentService.getModelByNumber(number);
+				int intRoute = Integer.parseInt(route[1]);
+				makeAnAppointmentService.setCarBusy(number);
+				makeAnAppointmentService.setDriverBusy(id);
+				makeAnAppointmentService.createAnAppointment(route[0], intRoute, number, model, id, login);
 			}
 			catch (Exception e) {
-				return "/repeat_error";
+				return "/error";
 			}
 			List<Route> routelist = makeAnAppointmentService.getAllRoutes();
 			request.setAttribute("routelist", routelist);

@@ -12,18 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<br>
-		<form>
-            <select id="language" name="language" onchange="submit()">
-            	<option value="ru" ${language == 'ru' ? 'selected' : ''}>Русский</option>
-                <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
-                
-            </select>
-        </form>
-<a href="${pageContext.request.contextPath}/driver_appointment"><fmt:message key="Appointment" /></a>
-	<br>
-	<a href="${pageContext.request.contextPath}/logout"><fmt:message key="Logout" /></a>
-	<hr/>
-	<h1><fmt:message key="There_is_no_appointment_at_the_moment" /></h1>
+	<h1><fmt:message key="Login_or_password_exist" /></h1>
+	<a href="javascript:history.back()"><fmt:message key="Go_back" /></a>
 </body>
 </html>
