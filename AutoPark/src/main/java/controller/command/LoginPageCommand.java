@@ -6,7 +6,6 @@ public class LoginPageCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		
 		return "index.jsp";
 		}
 }

@@ -13,7 +13,7 @@ public class CreateCarService {
         CarDao dao = factory.createCarDao();
         return dao.findAll();
 	}
-	 public void createRoute(String model, String number) throws SQLException {
+	 public void createCar(String model, String number) throws SQLException {
 		 Car entity = new Car(model, number);
 		 DaoFactory factory = DaoFactory.getInstance();		
 	     CarDao dao = factory.createCarDao();

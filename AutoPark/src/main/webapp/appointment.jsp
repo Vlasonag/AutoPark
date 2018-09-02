@@ -35,9 +35,11 @@
 		<tr>
     		<td>    
     			<c:forEach var="routelist" items="${routelist}">    	
-	                <p><input name="route" type="radio" value="${routelist.name} ${routelist.distance}" /><fmt:message key="Name" />: <c:out value="${routelist.name}"/>
+	                <p><input name="route" type="radio" value="${routelist.name} ${routelist.distance} ${routelist.id}" /><fmt:message key="Name" />: <c:out value="${routelist.name}"/>
 		            	<br>
 		                <fmt:message key="Distance" />: <c:out value="${routelist.distance} "/><fmt:message key="km" />
+		                <br>
+		                ID: <c:out value="${routelist.id} "/>
 	                </p>
     			</c:forEach>     
     		</td>

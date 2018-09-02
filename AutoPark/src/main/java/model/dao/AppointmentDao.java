@@ -4,7 +4,7 @@ import model.entity.AppointmentDTO;
 
 public interface AppointmentDao extends GenericDao<AppointmentDTO>  {
 
-	void cancelAppointment(String driver_id, String car_number);
+	void cancelAppointment(int id, String car_number);
 
 	AppointmentDTO getAppointmentByLogin(String login);
 

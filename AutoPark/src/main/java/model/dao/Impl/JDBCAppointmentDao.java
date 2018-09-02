@@ -12,6 +12,7 @@ import model.entity.AppointmentDTO;
 
 public class JDBCAppointmentDao implements AppointmentDao{
 	
+	final char dm = (char) 34;
 	private Connection connection;
 	
 	public JDBCAppointmentDao(Connection connection) {
@@ -20,8 +21,10 @@ public class JDBCAppointmentDao implements AppointmentDao{
 	@Override
 	public void create(AppointmentDTO entity) throws SQLException {
 		Statement ps = connection.createStatement();
+		System.out.println(entity.getRoute_name() + entity.getRoute_distance() +entity.getCar_number() +entity.getCar_model() + entity.getDriver_id()+entity.getDriver_login()+ " "+entity.getRoute_id());
 			ps.executeUpdate(
-					"INSERT INTO `autopark`.`appointment` (`appointment_route_name`, `appointment_route_distance`, `appointment_car_number`, `appointment_car_model`, `appointment_driver_id`, `appointment_driver_login`) VALUES ('"+entity.getRoute_name()+"', '"+entity.getRoute_distance()+"', '"+entity.getCar_number()+"', '"+entity.getCar_model()+"', '"+entity.getDriver_id()+"', '"+entity.getDriver_login()+"');");			
+					"INSERT INTO `autopark`.`appointment` (`appointment_route_name`, `appointment_route_distance`, `appointment_car_number`, `appointment_car_model`, `appointment_driver_id`, `appointment_driver_login`, `appointment_is_confirmed`, `appointment_route_id`) VALUES ('"+entity.getRoute_name()+"', '"+entity.getRoute_distance()+"', '"+entity.getCar_number()+"', '"+entity.getCar_model()+"', '"+entity.getDriver_id()+"', '"+entity.getDriver_login()+"', '0', '"+entity.getRoute_id()+"')");
+			
 		}
 
 	@Override
@@ -37,7 +40,7 @@ public class JDBCAppointmentDao implements AppointmentDao{
 			ResultSet rs = ps.executeQuery(
 					"SELECT * FROM appointment");
 			while ( rs.next() ){
-				applist.add(new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7)));
+				applist.add(new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8)));
 			}
 		}
 		catch (Exception e) {
@@ -64,15 +67,15 @@ public class JDBCAppointmentDao implements AppointmentDao{
 		
 	}
 	@Override
-	public void cancelAppointment(String id, String number) {
-		final char dm = (char) 34;
+	public void cancelAppointment(int id, String number) {
+		
 		try (Statement ps = connection.createStatement()){
 			ps.executeUpdate(
 					"DELETE FROM `autopark`.`appointment` WHERE (`appointment_car_number` = " + dm +  number + dm +");");
 			ps.executeUpdate(
 					"UPDATE `autopark`.`car` SET `car_free` = '1' WHERE (`car_number` = " + dm + number + dm + ");");
 			ps.executeUpdate(
-					"UPDATE `autopark`.`driver` SET `driver_free` = '1' WHERE (`driver_id` = '" + id + "');");
+					"UPDATE `autopark`.`driver` SET `driver_free` = '1' WHERE (`driver_id` = " + id + ");");
 					
 		}
 		catch (Exception e) {
@@ -83,12 +86,11 @@ public class JDBCAppointmentDao implements AppointmentDao{
 	}
 	@Override
 	public AppointmentDTO getAppointmentByLogin(String login) {
-		final char dm = (char) 34;
 		try (Statement ps = connection.createStatement()){
 			ResultSet rs = ps.executeQuery(
 					"SELECT * FROM appointment WHERE appointment_driver_login=" + dm + login + dm + "");
 			if(rs.next()){
-				return new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7));
+				return new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8));
 			}else {
 				return null;
 			}
@@ -100,7 +102,6 @@ public class JDBCAppointmentDao implements AppointmentDao{
 	}
 	@Override
 	public void confirmAppointment(String login) {
-		final char dm = (char) 34;
 		try (Statement ps = connection.createStatement()){
 			ps.executeUpdate(
 					"UPDATE `autopark`.`appointment` SET `appointment_is_confirmed` = '1' WHERE `appointment_driver_login` = " + dm + login + dm + ";");

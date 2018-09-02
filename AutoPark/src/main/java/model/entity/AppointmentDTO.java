@@ -10,19 +10,21 @@ public class AppointmentDTO {
 	private int driver_id;
 	private String driver_login;
 	private boolean isConfirmed;
+	private int route_id;
 	
 	public AppointmentDTO(String route_name, int route_distance, String car_number,
-			String car_model, int driver_id, String driver_login) {
+			String car_model, int driver_id, String driver_login, int route_id) {
 		this.route_name= route_name;
 		this.route_distance =route_distance;
 		this.car_number = car_number;
 		this.car_model = car_model;
 		this.driver_id = driver_id;
 		this.driver_login = driver_login;
+		this.route_id = route_id;
 	}
 
 	public AppointmentDTO(String route_name, int route_distance, String car_number,
-			String car_model, int driver_id, String driver_login, boolean isConfirmed) {
+			String car_model, int driver_id, String driver_login, boolean isConfirmed, int route_id) {
 		this.route_name= route_name;
 		this.route_distance =route_distance;
 		this.car_number = car_number;
@@ -30,6 +32,7 @@ public class AppointmentDTO {
 		this.driver_id = driver_id;
 		this.driver_login = driver_login;
 		this.isConfirmed = isConfirmed;
+		this.route_id = route_id;
 	}
 
 	public String getRoute_name() {
@@ -87,6 +90,17 @@ public class AppointmentDTO {
 	public void setConfirmed(boolean isConfirmed) {
 		this.isConfirmed = isConfirmed;
 	}
+
+	public int getRoute_id() {
+		return route_id;
+	}
+
+	public void setRoute_id(int route_id) {
+		this.route_id = route_id;
+	}
+	
+	
+	
 	
 	
 		

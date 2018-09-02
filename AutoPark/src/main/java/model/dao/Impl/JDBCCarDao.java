@@ -2,6 +2,7 @@ package model.dao.Impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +18,12 @@ public class JDBCCarDao implements CarDao{
     }
 	
 	@Override
-	public void create(Car entity) {
-		try (Statement ps = connection.createStatement()){
+	public void create(Car entity) throws SQLException {
+		Statement ps = connection.createStatement();
 			ps.executeUpdate(
 					"INSERT INTO autopark.car (car_number, car_model) VALUES ('" + entity.getNumber() + "', '" + entity.getModel() + "')");			
-		}
-		catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+		
+		
 		
 		
 	}

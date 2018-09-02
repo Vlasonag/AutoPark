@@ -13,7 +13,7 @@ public class CancelAppointmentService {
         return dao.findAll();
 	}
 	
-	public void cancelAppointment(String id, String number) {
+	public void cancelAppointment(int id, String number) {
 		DaoFactory factory = DaoFactory.getInstance();
         AppointmentDao dao = factory.createAppointmentDao();
         dao.cancelAppointment(id, number);

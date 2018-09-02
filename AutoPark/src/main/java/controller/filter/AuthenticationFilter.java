@@ -63,7 +63,7 @@ public class AuthenticationFilter implements Filter {
 
 		        } else {
 		        	 final ROLE role = ROLE.DRIVER;
-			            req.getSession().setAttribute("password", password);
+			            req.setAttribute("password", password);
 			            req.getSession().setAttribute("login", login);
 			            req.getSession().setAttribute("role", role);
 		            moveToMenu(req, res, ROLE.UNKNOWN);

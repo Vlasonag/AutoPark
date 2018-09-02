@@ -1,6 +1,6 @@
 package controller;
 
-import java.io.IOException;    
+import java.io.IOException;     
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,8 +44,6 @@ import controller.command.DriverAppointmentCommand;
 import controller.command.DriverConfirmationCommand;
 import controller.command.ErrorCommand;
 import controller.command.InputIntegerCommand;
-import controller.command.LoginAsAdminCommand;
-import controller.command.LoginCommand;
 import controller.command.LoginExistPageCommand;
 import controller.command.LoginPageCommand;
 import controller.command.LogoutCommand;
@@ -67,8 +65,6 @@ public class Servlet extends HttpServlet {
 	LoginService ls = new LoginService();
 	
 	public void init(){
-		commands.put("login_as_admin", new LoginAsAdminCommand(new LoginAsAdminService()));
-        commands.put("login", new LoginCommand(new LoginService()));
         commands.put("registration", new RegistrationCommand(new RegistrationService()));
         commands.put("logout", new LogoutCommand());
         commands.put("driver_confirmation", new DriverConfirmationCommand(new DriverConfirmationService()));
