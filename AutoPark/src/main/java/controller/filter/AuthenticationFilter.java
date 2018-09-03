@@ -28,69 +28,70 @@ public class AuthenticationFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+										FilterChain chain) throws IOException, ServletException {
 
-		        final HttpServletRequest req = (HttpServletRequest) request;
-		        final HttpServletResponse res = (HttpServletResponse) response;
+        final HttpServletRequest req = (HttpServletRequest) request;
+        final HttpServletResponse res = (HttpServletResponse) response;
 
-		        final String login = req.getParameter("login");
-		        final String password = req.getParameter("password");
-		        
-		        DaoFactory factory = DaoFactory.getInstance();		
-		        DriverDao dao = factory.createDriverDao();
-		        
-		        final HttpSession session = req.getSession();
+        final String login = req.getParameter("login");
+        final String password = req.getParameter("password");
+        
+        DaoFactory factory = DaoFactory.getInstance();		
+        DriverDao dao = factory.createDriverDao();
+        
+        final HttpSession session = req.getSession();
 
-		        //Logged user.
-		        if (nonNull(session) &&
-		                nonNull(session.getAttribute("login")) &&
-		                nonNull(session.getAttribute("password"))) {
+        //Logged user.
+        if (nonNull(session) &&
+                nonNull(session.getAttribute("login")) &&
+                nonNull(session.getAttribute("password"))) {
 
-		            final ROLE role = (ROLE) session.getAttribute("role");
+            final ROLE role = (ROLE) session.getAttribute("role");
 
-		            moveToMenu(req, res, role);
+            moveToMenu(req, res, role);
 
 
-		        } else if (dao.isDriverConfirmed(login, password)) {
+        } else if (dao.isDriverConfirmed(login, password)) {
 
-		            final ROLE role = ROLE.DRIVER;
+            final ROLE role = ROLE.DRIVER;
 
-		            req.getSession().setAttribute("password", password);
-		            req.getSession().setAttribute("login", login);
-		            req.getSession().setAttribute("role", role);
+            req.getSession().setAttribute("password", password);
+            req.getSession().setAttribute("login", login);
+            req.getSession().setAttribute("role", role);
 
-		            moveToMenu(req, res, role);
+            moveToMenu(req, res, role);
 
-		        } else {
-		        	
-		            moveToMenu(req, res, ROLE.UNKNOWN);
-		           
-		        }
-		        
+        } 
+        else {
+        	
+            moveToMenu(req, res, ROLE.UNKNOWN);
+           
+        }	        
 	}
-		    
+	    
 
-		    
-		    private void moveToMenu(final HttpServletRequest req,
-		                            final HttpServletResponse res,
-		                            final ROLE role)
-		            throws ServletException, IOException {
+	    
+	    private void moveToMenu(final HttpServletRequest req,
+	                            final HttpServletResponse res,
+	                            final ROLE role)
+	            throws ServletException, IOException {
 
 
-		         if (role.equals(ROLE.DRIVER)) {
+	         if (role.equals(ROLE.DRIVER)) {
 
-		            req.getRequestDispatcher("/driver_appointment").forward(req, res);
+	            req.getRequestDispatcher("/driver_appointment").forward(req, res);
 
-		        } else if (role.equals(ROLE.ADMIN)) {
+	        } 
+	        else if (role.equals(ROLE.ADMIN)) {
 
-			            req.getRequestDispatcher("/wrong_role").forward(req, res);
+		            req.getRequestDispatcher("/wrong_role").forward(req, res);
 
-			        }
-		        else {
-		        	req.getRequestDispatcher("/driver_appointment").forward(req, res);
-		        }
-		        
-		    }   
+		    }
+	        else {
+	        	
+	        	req.getRequestDispatcher("/driver_appointment").forward(req, res);
+	        } 
+	    }   
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {

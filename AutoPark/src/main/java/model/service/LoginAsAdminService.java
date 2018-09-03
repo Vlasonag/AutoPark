@@ -7,8 +7,8 @@ import model.dao.DaoFactory;
 import model.entity.Admin;
 
 public class LoginAsAdminService {
-	public boolean isAdminExist(String login, String password)
-	{
+	public boolean isAdminExist(String login, String password) {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
         AdminDao dao = factory.createAdminDao();
 		List<Admin> al = dao.findAll();

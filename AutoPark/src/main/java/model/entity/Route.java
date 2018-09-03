@@ -8,13 +8,17 @@ public class Route {
 	
 	
 	public Route(int distance, String name) {
+		
 		this.distance = distance;
 		this.name = name;
+		
 	}
 	public Route(int id, int distance, String name) {
+		
 		this.id = id;
 		this.distance = distance;
 		this.name = name;
+		
 	}
 	
 	public int getId() {

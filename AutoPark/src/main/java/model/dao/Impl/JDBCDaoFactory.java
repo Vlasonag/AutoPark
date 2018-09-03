@@ -40,7 +40,8 @@ public class JDBCDaoFactory extends DaoFactory{
     public Connection getConnection(){
         try {
         	DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/autopark?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/autopark?useUnicode=true"
+            		+ "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
                     "root" ,
                     "root" );
             

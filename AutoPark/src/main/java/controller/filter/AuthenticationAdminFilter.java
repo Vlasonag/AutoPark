@@ -33,42 +33,44 @@ public class AuthenticationAdminFilter implements Filter {
 	}
 
 	
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		 final HttpServletRequest req = (HttpServletRequest) request;
-	        final HttpServletResponse res = (HttpServletResponse) response;
+	public void doFilter(ServletRequest request, ServletResponse response,
+										FilterChain chain) throws IOException, ServletException {
+		
+		final HttpServletRequest req = (HttpServletRequest) request;
+	    final HttpServletResponse res = (HttpServletResponse) response;
 
-	        final String login = req.getParameter("login");
-	        final String password = req.getParameter("password");
-	        
-	        DaoFactory factory = DaoFactory.getInstance();		
-	        AdminDao dao = factory.createAdminDao();
-	        
-	        final HttpSession session = req.getSession();
-	        
-	        if (nonNull(session) &&
-	                nonNull(session.getAttribute("login")) &&
-	                nonNull(session.getAttribute("password"))) {
+        final String login = req.getParameter("login");
+        final String password = req.getParameter("password");
+        
+        DaoFactory factory = DaoFactory.getInstance();		
+        AdminDao dao = factory.createAdminDao();
+        
+        final HttpSession session = req.getSession();
+        
+        if (nonNull(session) &&
+                nonNull(session.getAttribute("login")) &&
+                nonNull(session.getAttribute("password"))) {
 
-	            final ROLE role = (ROLE) session.getAttribute("role");
+            final ROLE role = (ROLE) session.getAttribute("role");
 
-	            moveToMenu(req, res, role);
+            moveToMenu(req, res, role);
 
+        } 
+        else if (dao.isAdminExist(login, password)) {
 
-	        } else if (dao.isAdminExist(login, password)) {
+            final ROLE role = ROLE.ADMIN;
 
-	            final ROLE role = ROLE.ADMIN;
+            req.getSession().setAttribute("password", password);
+            req.getSession().setAttribute("login", login);
+            req.getSession().setAttribute("role", role);
 
-	            req.getSession().setAttribute("password", password);
-	            req.getSession().setAttribute("login", login);
-	            req.getSession().setAttribute("role", role);
+            moveToMenu(req, res, role);
 
-	            moveToMenu(req, res, role);
+        } 
+        else {
 
-	        } else {
-
-	            moveToMenu(req, res, ROLE.UNKNOWN);
-	        }
-	        
+            moveToMenu(req, res, ROLE.UNKNOWN);
+        }      
     }
 
     
@@ -82,11 +84,13 @@ public class AuthenticationAdminFilter implements Filter {
 
             req.getRequestDispatcher("/driver_confirmation").forward(req, res);
 
-        } else if (role.equals(ROLE.DRIVER)) {
+        } 
+    	else if (role.equals(ROLE.DRIVER)) {
 
 	            req.getRequestDispatcher("/wrong_role").forward(req, res);
-	        }
+	    }
         else {
+        	
         	req.getRequestDispatcher("/driver_confirmation").forward(req, res);
         }
         
@@ -98,5 +102,4 @@ public class AuthenticationAdminFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}
-
 }

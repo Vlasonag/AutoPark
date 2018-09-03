@@ -10,7 +10,9 @@ public class RegistrationPageCommand implements Command{
 	
 	@Override
 	public String execute(HttpServletRequest request) {
+		
 		final HttpSession session = request.getSession();
+		
 		logger.info("This is info : login: " + session.getAttribute("login") + "| role: " 
 				+ session.getAttribute("role") + " зашел на страницу: registration");
 		return "registration.jsp";

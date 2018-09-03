@@ -77,7 +77,8 @@ public class JDBCAdminDao implements AdminDao{
 			e.printStackTrace();
 		}
 		for(int i = 0; i < adminlist.size(); i++) {
-			if ((login.equals(adminlist.get(i).getLogin())) && (password.equals(adminlist.get(i).getPassword()))) {
+			if ((login.equals(adminlist.get(i).getLogin())) 
+										&& (password.equals(adminlist.get(i).getPassword()))) {
 				return true;
 			}		
 		}

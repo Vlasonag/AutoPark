@@ -18,6 +18,7 @@ import model.entity.Driver;
 public class RegistrationService {
 	
 	public void regDriver(String login, String password) throws SQLException {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
         DriverDao dao = factory.createDriverDao();
 	    Driver driver = new Driver(login, password);
@@ -25,6 +26,7 @@ public class RegistrationService {
         
 	}
 	public boolean isDriverPasswordExist(String password) {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
         DriverDao dao = factory.createDriverDao();
     	List<Driver> dl = dao.findAll();
@@ -36,6 +38,7 @@ public class RegistrationService {
     	return false;
 	}
 	public boolean isDriverLoginExist(String login) {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
         DriverDao dao = factory.createDriverDao();
     	List<Driver> dl = dao.findAll();
@@ -47,6 +50,7 @@ public class RegistrationService {
     	return false;
 	}
 	public boolean isAdminLoginExist(String login) {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
         AdminDao dao = factory.createAdminDao();
     	List<Admin> al = dao.findAll();
@@ -58,6 +62,7 @@ public class RegistrationService {
     	return false;
 	}
 	public boolean isAdminPasswordExist(String password) {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
         AdminDao dao = factory.createAdminDao();
     	List<Admin> al = dao.findAll();

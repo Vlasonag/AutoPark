@@ -1,6 +1,6 @@
 package controller;
 
-import java.io.IOException; 
+import java.io.IOException;  
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +18,6 @@ import model.service.DeleteCarService;
 import model.service.DeleteRouteService;
 import model.service.DriverAppointmentService;
 import model.service.DriverConfirmationService;
-import model.service.LoginService;
 import model.service.MakeAnAppointmentService;
 import model.service.RegistrationService;
 import model.service.ShowAllAppointmentsService;
@@ -60,9 +59,9 @@ public class Servlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	Map<String, Command> commands = new HashMap<>();
-	LoginService ls = new LoginService();
 	
 	public void init(){
+		
         commands.put("registration", new RegistrationCommand(new RegistrationService()));
         commands.put("logout", new LogoutCommand());
         commands.put("driver_confirmation", new DriverConfirmationCommand(new DriverConfirmationService()));
@@ -92,6 +91,7 @@ public class Servlet extends HttpServlet {
     }
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
@@ -104,6 +104,7 @@ public class Servlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
@@ -114,5 +115,4 @@ public class Servlet extends HttpServlet {
         System.out.println(page);
         request.getRequestDispatcher(page).forward(request,response);
 	}
-
 }

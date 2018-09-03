@@ -47,7 +47,9 @@ public class JDBCAppointmentDao implements AppointmentDao{
 			ResultSet rs = ps.executeQuery(
 					"SELECT * FROM appointment");
 			while ( rs.next() ){
-				applist.add(new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8)));
+				applist.add(new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),
+													rs.getString(4), rs.getInt(5), rs.getString(6),
+																		rs.getBoolean(7), rs.getInt(8)));
 			}
 		}
 		catch (Exception e) {
@@ -97,7 +99,8 @@ public class JDBCAppointmentDao implements AppointmentDao{
 			ResultSet rs = ps.executeQuery(
 					"SELECT * FROM appointment WHERE appointment_driver_login=" + dm + login + dm + "");
 			if(rs.next()){
-				return new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8));
+				return new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4),
+												rs.getInt(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8));
 			}else {
 				return null;
 			}
@@ -111,7 +114,8 @@ public class JDBCAppointmentDao implements AppointmentDao{
 	public void confirmAppointment(String login) {
 		try (Statement ps = connection.createStatement()){
 			ps.executeUpdate(
-					"UPDATE `autopark`.`appointment` SET `appointment_is_confirmed` = '1' WHERE `appointment_driver_login` = " + dm + login + dm + ";");
+					"UPDATE `autopark`.`appointment` SET `appointment_is_confirmed` = '1' "
+					+ "WHERE `appointment_driver_login` = " + dm + login + dm + ";");
 					
 		}
 		catch (Exception e) {
@@ -144,11 +148,12 @@ public class JDBCAppointmentDao implements AppointmentDao{
 			for(int i = 0; i < start + recordsOnPage; i++) {
 				rs.next();
 				if(i >= start && i < start + recordsOnPage) {
-					applist.add(new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8)));
+					applist.add(new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),
+														rs.getString(4), rs.getInt(5), rs.getString(6),
+																		rs.getBoolean(7), rs.getInt(8)));
 				}
 			}
-		
-		
+			
 		return applist;
 	}
 

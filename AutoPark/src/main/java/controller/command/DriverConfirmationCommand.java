@@ -19,41 +19,47 @@ public class DriverConfirmationCommand implements Command{
 	public DriverConfirmationCommand(DriverConfirmationService driverConfirmationService) {
 		this.driverConfirmationService = driverConfirmationService;
 	}
+	
 	@Override
 	public String execute(HttpServletRequest request) {
 		try{
-		final HttpSession session = request.getSession();
+			final HttpSession session = request.getSession();
 		
-		String login = (String) request.getSession().getAttribute("login");
-		String password = (String) request.getSession().getAttribute("password");
+			String login = (String) request.getSession().getAttribute("login");
+			String password = (String) request.getSession().getAttribute("password");
 		
-		ROLE role = (ROLE) session.getAttribute("role");
-		if(login.equals("") || password.equals("")) {
-			return "/input_integer";
-		}
-		if (role.toString().equals("ADMIN")) {
-			login = (String) request.getSession().getAttribute("login");
-			password = (String) request.getSession().getAttribute("password");
-			List<Driver> driverlist = driverConfirmationService.getUnconfirmedDriver();
-	    	request.setAttribute("driverlist", driverlist);
-	    	logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
-					+ session.getAttribute("role") + " зашел на страницу: driverconfirmation");
-			return "driverconfirmation.jsp";
-		}
-		else if(!driverConfirmationService.isAdminExist(login, password)){
-			logger.error("This is info : login = " + session.getAttribute("login") + "| role = " 
-					+ session.getAttribute("role") + " ввел неверные данные и перешел на страницу wrongiput");
-			return "/error";
-	}
-		else {
-			logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
-					+ session.getAttribute("role") + " сессия завершена");
-			return "/logout";
-		}
+			ROLE role = (ROLE) session.getAttribute("role");
+			if(login.equals("") || password.equals("")) {
+				return "/input_integer";
+			}
+			if (role.toString().equals("ADMIN")) {
+				
+				login = (String) request.getSession().getAttribute("login");
+				password = (String) request.getSession().getAttribute("password");
+				
+				List<Driver> driverlist = driverConfirmationService.getUnconfirmedDriver();
+				request.setAttribute("driverlist", driverlist);
+				
+				logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
+						+ session.getAttribute("role") + " зашел на страницу: driverconfirmation");
+				return "driverconfirmation.jsp";
+			}
+			else if(!driverConfirmationService.isAdminExist(login, password)){
+				
+				logger.error("This is info : login = " + session.getAttribute("login") + "| role = " 
+						+ session.getAttribute("role") + " ввел неверные данные и перешел на страницу wrongiput");
+				return "/error";
+			}
+			else {
+				
+				logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
+						+ session.getAttribute("role") + " сессия завершена");
+				return "/logout";
+			}
 		}
 		catch (NullPointerException e) {
+			
 			return "/input_integer";
 		}
-		}
-		
+	}		
 }

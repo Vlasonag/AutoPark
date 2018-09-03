@@ -11,17 +11,21 @@ import model.entity.Driver;
 import model.entity.Route;
 
 public class ShowAppointmentsService {
+	
 	public List<Route> getAllRoutes() {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
         RouteDao dao = factory.createRouteDao();
         return dao.findAll();
 	}
 	public List<Car> getAllFreeCars() {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
         CarDao dao = factory.createCarDao();
         return dao.findAllFreeCars();
 	}
 	public List<Driver> getAllFreeDrivers() {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
         DriverDao dao = factory.createDriverDao();
         return dao.findAllFreeDrivers();

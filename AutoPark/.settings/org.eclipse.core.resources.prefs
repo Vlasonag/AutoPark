@@ -13,6 +13,7 @@ encoding//src/main/java/controller/command/DeleteRouteCommand.java=UTF-8
 encoding//src/main/java/controller/command/DriverAppointmentCommand.java=UTF-8
 encoding//src/main/java/controller/command/DriverConfirmationCommand.java=UTF-8
 encoding//src/main/java/controller/command/LoginPageCommand.java=UTF-8
+encoding//src/main/java/controller/command/LogoutCommand.java=UTF-8
 encoding//src/main/java/controller/command/MakeAnAppointmentCommand.java=UTF-8
 encoding//src/main/java/controller/command/PasswordExistPageCommand.java=UTF-8
 encoding//src/main/java/controller/command/RegistrationCommand.java=UTF-8

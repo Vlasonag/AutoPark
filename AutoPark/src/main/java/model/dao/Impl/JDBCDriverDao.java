@@ -22,7 +22,8 @@ public class JDBCDriverDao implements DriverDao {
 	public void create(Driver entity) {
 		try (Statement ps = connection.createStatement()){
 			ps.executeUpdate(
-					"INSERT INTO autopark.driver (driver_login, driver_password, confirmed) VALUES ('"+entity.getLogin()+"', '"+entity.getPassword()+"', '0')");			
+					"INSERT INTO autopark.driver (driver_login, driver_password, confirmed) "
+					+ "VALUES ('"+entity.getLogin()+"', '"+entity.getPassword()+"', '0')");			
 		}
 		catch (Exception e) {
             throw new RuntimeException(e);
@@ -128,7 +129,9 @@ public class JDBCDriverDao implements DriverDao {
 			e.printStackTrace();
 		}
 		for(int i = 0; i < driverlist.size(); i++) {
-			if ((login.equals(driverlist.get(i).getLogin())) && (password.equals(driverlist.get(i).getPassword())) && (driverlist.get(i).isConfirmed())) {
+			if ((login.equals(driverlist.get(i).getLogin())) 
+					&& (password.equals(driverlist.get(i).getPassword())) 
+						&& (driverlist.get(i).isConfirmed())) {
 				return true;
 			}		
 		}
@@ -170,7 +173,8 @@ public class JDBCDriverDao implements DriverDao {
 	@Override
 	public void setDriverBusy(int id) {
 		try (Statement ps = connection.createStatement()){
-			ps.executeUpdate("UPDATE `autopark`.`driver` SET `driver_free` = '0' WHERE (`driver_id` = " + id + ")");	
+			ps.executeUpdate("UPDATE `autopark`.`driver` SET `driver_free` = '0'"
+													+ " WHERE (`driver_id` = " + id + ")");	
 		}
 		catch (Exception e) {
             throw new RuntimeException(e);

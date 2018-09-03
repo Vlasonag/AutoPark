@@ -14,21 +14,28 @@ import model.entity.Route;
 import model.service.ShowAppointmentsService;
 
 public class AppointmentCommand implements Command{
+	
 	ShowAppointmentsService showAppointmentsService = new ShowAppointmentsService();
+	
 	public AppointmentCommand(ShowAppointmentsService showAppointmentsService) {
 		this.showAppointmentsService = showAppointmentsService;
 	}
+	
 	@Override
 	public String execute(HttpServletRequest request) {
+		
 		final HttpSession session = request.getSession();
 		ROLE role = (ROLE) session.getAttribute("role");
+		
 		if (role.toString().equals("ADMIN")) {
+			
 			List<Route> routelist = showAppointmentsService.getAllRoutes();
 			request.setAttribute("routelist", routelist);
 			List<Car> carlist = showAppointmentsService.getAllFreeCars();
 			request.setAttribute("carlist", carlist);
 			List<Driver> driverlist = showAppointmentsService.getAllFreeDrivers();
 			request.setAttribute("driverlist", driverlist);
+			
 			logger.info("This is info : login = " + session.getAttribute("login") + "| role = " + 
 			session.getAttribute("role") + " зашел на страницу: appointment");
 			return "appointment.jsp";
@@ -37,7 +44,6 @@ public class AppointmentCommand implements Command{
 			logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
 					+ session.getAttribute("role") + " сессия завершена");
 			return "/logout";
+		}
 	}
-	}
-
 }

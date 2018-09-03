@@ -12,10 +12,13 @@ import model.entity.Car;
 import model.service.CreateCarService;
 
 public class CreateCarCommand implements Command {
+	
 	CreateCarService createCarService = new CreateCarService();
+	
 	public CreateCarCommand(CreateCarService createCarService) {
 		this.createCarService = createCarService;
 	}
+	
 	@Override
 	public String execute(HttpServletRequest request) {
 		
@@ -24,8 +27,10 @@ public class CreateCarCommand implements Command {
 		
 			try {
 				if (role.toString().equals("ADMIN")) {
+					
 					String number = new String(request.getParameter("number").getBytes("ISO-8859-1"), "UTF-8");				
 					String model = new String(request.getParameter("model").getBytes("ISO-8859-1"), "UTF-8");
+					
 					if(number.equals("") || model.equals("")) {
 						logger.error("This is info : login = " + session.getAttribute("login") + "| role = " 
 								+ session.getAttribute("role") + " ввел неверные данные и перешел на страницу wrongiput");

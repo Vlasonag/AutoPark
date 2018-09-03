@@ -9,13 +9,15 @@ import model.entity.Admin;
 import model.entity.Driver;
 
 public class DriverConfirmationService {
+	
 	public List<Driver> getUnconfirmedDriver() {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
 	    DriverDao dao = factory.createDriverDao();
 		return dao.findAllUnconfirmed();
 	}
-	public boolean isAdminExist(String login, String password)
-	{
+	public boolean isAdminExist(String login, String password) {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
         AdminDao dao = factory.createAdminDao();
 		List<Admin> al = dao.findAll();
@@ -25,6 +27,5 @@ public class DriverConfirmationService {
 			}		
 		}
 		return false;
-	}
-	
+	}	
 }

@@ -10,20 +10,24 @@ import model.entity.AppointmentDTO;
 import model.service.ConfirmAppointmentService;
 
 public class ConfirmAppointmentCommand implements Command{
+	
 	ConfirmAppointmentService confirmAppointmentService = new ConfirmAppointmentService();
 	
 	public ConfirmAppointmentCommand (ConfirmAppointmentService confirmAppointmentService) {
 		this.confirmAppointmentService = confirmAppointmentService;
 	}
+	
 	@Override
 	public String execute(HttpServletRequest request) {
 		final HttpSession session = request.getSession();
 		String login = (String) session.getAttribute("login");
 		ROLE role = (ROLE) session.getAttribute("role");
 		if (role.toString().equals("DRIVER")) {
+			
 			confirmAppointmentService.confirmAppointment(login);
 			logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
-					+ session.getAttribute("role") + " подтвердил свое назначение");				
+					+ session.getAttribute("role") + " подтвердил свое назначение");
+			
 			AppointmentDTO app = confirmAppointmentService.getAppointmentByLogin(login);
 			request.setAttribute("app", app);
 			return "driverappointment.jsp";
@@ -34,5 +38,4 @@ public class ConfirmAppointmentCommand implements Command{
 			return "/logout";
 		}
 	}
-
 }

@@ -36,30 +36,32 @@ public class CancelAppointmentCommand implements Command{
 			cancelAppointmentService.cancelAppointment(id, number);
 			logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
 			+ session.getAttribute("role") + " отменил назначение по: driver_id = " + id + ", car_number = " + number);
+			
 			List<AppointmentDTO> applist;
+			
 			try {
 				applist = cancelAppointmentService.getAllForPage((page-1)*recordsPerPage,
 				        recordsPerPage);
-			} catch (SQLException e) {
+			} 
+			catch (SQLException e) {
 				return "/noappointments";
 			}
+			
 			int noOfRecords  = cancelAppointmentService.getNumberOfAppointments();
 			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+			
 			request.setAttribute("applist", applist);	
 			request.setAttribute("noOfPages", noOfPages);
             request.setAttribute("currentPage", page);
+            
 			return "cappointment.jsp";
-		}
+			}
 			catch (Exception e) {
 				return "/error";
 			}
-		
-		}		
+		}
 		logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
 				+ session.getAttribute("role") + " сессия завершена");
 		return "/logout";
-		
-		
-
 	}
 }

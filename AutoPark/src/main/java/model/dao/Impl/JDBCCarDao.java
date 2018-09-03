@@ -21,11 +21,8 @@ public class JDBCCarDao implements CarDao{
 	public void create(Car entity) throws SQLException {
 		Statement ps = connection.createStatement();
 			ps.executeUpdate(
-					"INSERT INTO autopark.car (car_number, car_model) VALUES ('" + entity.getNumber() + "', '" + entity.getModel() + "')");			
-		
-		
-		
-		
+					"INSERT INTO autopark.car (car_number, car_model) "
+					+ "VALUES ('" + entity.getNumber() + "', '" + entity.getModel() + "')");	
 	}
 
 	@Override

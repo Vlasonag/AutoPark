@@ -8,19 +8,25 @@ public class Driver {
 	private boolean isFree;
 	
 	public Driver(String login, String password) {
+		
 		this.login = login;
 		this.password = password;
+		
 	}
 	public Driver(int id, String login, String password) {
+		
 		this.id = id;
 		this.login = login;
 		this.password = password;
+		
 	}
 	public Driver(int id, String login, String password, boolean confirmed) {
+		
 		this.id = id;
 		this.login = login;
 		this.password = password;
 		this.confirmed = confirmed;
+		
 	}
 	public String getLogin() {
 		return login;

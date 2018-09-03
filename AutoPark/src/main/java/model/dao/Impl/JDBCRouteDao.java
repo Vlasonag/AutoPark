@@ -21,7 +21,8 @@ public class JDBCRouteDao implements RouteDao{
 	public void create(Route entity) {
 		try (Statement ps = connection.createStatement()){
 			ps.executeUpdate(
-					"INSERT INTO autopark.route (route_distance, route_name) VALUES ('" + entity.getDistance() + "', '" + entity.getName() + "')");			
+					"INSERT INTO autopark.route (route_distance, route_name) "
+								+ "VALUES ('" + entity.getDistance() + "', '" + entity.getName() + "')");			
 		}
 		catch (Exception e) {
             throw new RuntimeException(e);

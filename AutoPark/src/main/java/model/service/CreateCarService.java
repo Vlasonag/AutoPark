@@ -8,12 +8,15 @@ import model.dao.DaoFactory;
 import model.entity.Car;
 
 public class CreateCarService {
+	
 	public List<Car> getAll() {
+		
 		DaoFactory factory = DaoFactory.getInstance();		
         CarDao dao = factory.createCarDao();
         return dao.findAll();
 	}
 	 public void createCar(String model, String number) throws SQLException {
+		 
 		 Car entity = new Car(model, number);
 		 DaoFactory factory = DaoFactory.getInstance();		
 	     CarDao dao = factory.createCarDao();

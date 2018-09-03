@@ -14,20 +14,24 @@ import model.service.RegistrationService;
 
 
 public class RegistrationCommand implements Command, LoginAndPasswordRegex{
-	Pattern pattern;
-	Matcher matcher;
 	
+	Pattern pattern;
+	Matcher matcher;	
 	
 	RegistrationService registrationService = new RegistrationService();
 	
 	public RegistrationCommand(RegistrationService registrationService) {
 		this.registrationService = registrationService;
 	}
+	
 	@Override
 	public String execute(HttpServletRequest request) {
+		
 		final HttpSession session = request.getSession();
+		
 		String login = request.getParameter("login");        
 		String password = request.getParameter("password");
+		
 		pattern = Pattern.compile(LoginAndPasswordRegex.loginregex);
 		matcher = pattern.matcher(login);
 		

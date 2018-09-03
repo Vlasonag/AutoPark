@@ -6,15 +6,19 @@ public class Car {
 	private boolean isFree;
 	
 	public Car(String number, String model, boolean isFree) {
+		
 		super();
 		this.number = number;
 		this.model = model;
 		this.isFree = isFree;
+		
 	}
 	public Car(String number, String model) {
+		
 		super();
 		this.number = number;
 		this.model = model;
+		
 	}
 	public String getNumber() {
 		return number;
