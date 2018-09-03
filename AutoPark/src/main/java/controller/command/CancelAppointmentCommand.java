@@ -23,13 +23,16 @@ public class CancelAppointmentCommand implements Command{
 		final HttpSession session = request.getSession();
 		ROLE role = (ROLE) session.getAttribute("role");
 		if (role.toString().equals("ADMIN")) {
+			try {
 			int page = 1;
 	        int recordsPerPage = 1;
 	        if(request.getParameter("page") != null) {
 	        	page = Integer.parseInt(request.getParameter("page"));
 	        }
 			String number = request.getParameter("number");
+			
 			int id = Integer.parseInt(request.getParameter("id"));
+			
 			cancelAppointmentService.cancelAppointment(id, number);
 			logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
 			+ session.getAttribute("role") + " отменил назначение по: driver_id = " + id + ", car_number = " + number);
@@ -47,11 +50,16 @@ public class CancelAppointmentCommand implements Command{
             request.setAttribute("currentPage", page);
 			return "cappointment.jsp";
 		}
-		else {
-			logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
-					+ session.getAttribute("role") + " сессия завершена");
-			return "/logout";
-		}
-	}
+			catch (Exception e) {
+				return "/error";
+			}
+		
+		}		
+		logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
+				+ session.getAttribute("role") + " сессия завершена");
+		return "/logout";
+		
+		
 
+	}
 }

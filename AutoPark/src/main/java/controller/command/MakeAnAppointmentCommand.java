@@ -27,13 +27,18 @@ public class MakeAnAppointmentCommand implements Command {
 			
 			
 			try {
-				int id = Integer.parseInt(request.getParameter("driver"));
+				Integer id = Integer.parseInt(request.getParameter("driver"));
 				String[] route = request.getParameter("route").split(" ");
-				int r_id = Integer.parseInt(route[2]);
+				Integer r_id = Integer.parseInt(route[2]);
 				String number = request.getParameter("car");
 				String login = makeAnAppointmentService.getLoginById(id);
 				String model = makeAnAppointmentService.getModelByNumber(number);
-				int intRoute = Integer.parseInt(route[1]);
+				Integer intRoute = Integer.parseInt(route[1]);
+				if (route[0].equals("") || intRoute.toString().equals("") || number.toString().equals("")
+						|| model.toString().equals("") || id.toString().equals("") 
+						|| login.toString().equals("") || r_id.toString().equals("")) {
+					return "/error";
+				}
 				makeAnAppointmentService.setCarBusy(number);
 				logger.info("This is info : login: " + session.getAttribute("login") + "| role: " 
 						+ session.getAttribute("role") + " сделал водителя занятым по: number = " + number);

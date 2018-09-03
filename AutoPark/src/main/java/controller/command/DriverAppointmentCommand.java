@@ -23,15 +23,19 @@ public class DriverAppointmentCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request) {
 		final HttpSession session = request.getSession();
+		try {
 		String login = (String) request.getSession().getAttribute("login");
 		String password = (String) request.getSession().getAttribute("password");
 		AppointmentDTO app = driverAppointmentService.getAppointmentByLogin(login);
 		ROLE role = (ROLE) session.getAttribute("role");
+		if (login.equals("") || password.equals("")) {
+			return "/input_integer";
+		}
 		try {
 		if (role.toString().equals("DRIVER") && driverAppointmentService.isDriverExist(login, password) 
 					&& driverAppointmentService.isDriverConfirmed(login, password) && app == null) {
 			
-			logger.info("This is warn : login: " + session.getAttribute("login") + "| role: " 
+			logger.info("This is info : login: " + session.getAttribute("login") + "| role: " 
 					+ session.getAttribute("role") + "зашел на страницу: noappointment");
 			return "/noappointment.jsp";
 		} 
@@ -39,13 +43,13 @@ public class DriverAppointmentCommand implements Command{
 				&& driverAppointmentService.isDriverConfirmed(login, password)) {
 			
 			request.setAttribute("app", app);
-			logger.info("This is warn : login = " + session.getAttribute("login") + "| role = " 
+			logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
 					+ session.getAttribute("role") + "зашел на страницу: driverappointment");
 			return "/driverappointment.jsp";
 		}
 		else if (driverAppointmentService.isDriverExist(login, password) 
 						&& !driverAppointmentService.isDriverConfirmed(login, password)) {
-			logger.info("This is warn : login = " + session.getAttribute("login") + "| role = " 
+			logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
 					+ session.getAttribute("role") + "зашел на страницу: notconfirmed");
 			return "/notconfirmed.jsp";
 		}
@@ -63,4 +67,9 @@ public class DriverAppointmentCommand implements Command{
 			
 		
 	}
+		catch (NullPointerException e) {
+			return "/input_integer";
+		}
+	}
+		
 }

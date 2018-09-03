@@ -25,11 +25,11 @@
 	
 	<filter-mapping>
 		<filter-name>AuthenticationAdminFilter</filter-name>
-		<url-pattern>/driver_confirmation</url-pattern>
+		<url-pattern>/driverconfirmation</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>AuthenticationFilter</filter-name>
-		<url-pattern>/driver_appointment</url-pattern>
+		<url-pattern>/driverappointment</url-pattern>
 	</filter-mapping>
 	
   
