@@ -21,7 +21,7 @@
  	<br>
  	
 	<h1><fmt:message key="Login_as_Admin" /></h1><br>
-        <form method="POST" action="AuthAdminFilter">
+        <form method="POST" action="driver_confirmation">
 
             <fmt:message key="LOGIN" /> <input type="text" required placeholder="login" name="login"><br>
             <fmt:message key="PASSWORD" /> <input type="password" required placeholder="password" name="password"><br><br>
