@@ -23,8 +23,8 @@ public class DriverConfirmationCommand implements Command{
 	public String execute(HttpServletRequest request) {
 		
 		final HttpSession session = request.getSession();
-		String login = request.getParameter("login");
-		String password = request.getParameter("password");
+		String login = (String) request.getSession().getAttribute("login");
+		String password = (String) request.getSession().getAttribute("password");
 		ROLE role = (ROLE) session.getAttribute("role");
 		if(login.equals("") || password.equals("")) {
 			return "/input_integer";

@@ -42,7 +42,6 @@ public class CancelAppointmentCommand implements Command{
 			}
 			int noOfRecords  = cancelAppointmentService.getNumberOfAppointments();
 			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-			System.out.println();
 			request.setAttribute("applist", applist);	
 			request.setAttribute("noOfPages", noOfPages);
             request.setAttribute("currentPage", page);

@@ -48,7 +48,7 @@ public class MakeAnAppointmentCommand implements Command {
 			}
 			catch (Exception e) {
 				logger.error("This is info : login = " + session.getAttribute("login") + "| role = " 
-						+ session.getAttribute("role") + " ввел неверные данные и перешел на страницу wrongiput");
+						+ session.getAttribute("role") + " ввел неверные данные и перешел на страницу error");
 				return "/error";
 			}
 			List<Route> routelist = makeAnAppointmentService.getAllRoutes();

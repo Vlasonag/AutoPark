@@ -33,7 +33,7 @@
 	<table border="1" width="100%">
 	<tbody>  
 		<tr>
-    		<td>    
+    		<td style="width: 33%;">    
     			<c:forEach var="routelist" items="${routelist}">    	
 	                <p><input name="route" type="radio" value="${routelist.name} ${routelist.distance} ${routelist.id}" /><fmt:message key="Name" />: <c:out value="${routelist.name}"/>
 		            	<br>
@@ -44,7 +44,7 @@
     			</c:forEach>     
     		</td>
   	
-    		<td>
+    		<td style="width: 33%;"> 
                 <c:forEach var="carlist" items="${carlist}">
                 	<p>
 	                	<input name="car" type="radio" value="${carlist.number}" /><fmt:message key="Number" />: <c:out value="${carlist.number}"/>
@@ -54,7 +54,7 @@
     			</c:forEach> 
     		</td>
   
-  			<td>
+  			<td style="width: 33%;"> 
                 <c:forEach var="driverlist" items="${driverlist}">
                 	<p>
 	                	<input name="driver" type="radio" value="${driverlist.id}" />ID: <c:out value="${driverlist.id}"/>
