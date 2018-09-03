@@ -48,7 +48,7 @@
 	</c:forEach>
 	<%--For displaying Previous link except for the 1st page --%>
     <c:if test="${currentPage != 1}">
-        <td><a href="appointments?page=${currentPage - 1}">Previous</a></td>
+        <td><a href="appointments?page=${currentPage - 1}"><fmt:message key="Previous" /></a></td>
     </c:if>
  
     <%--For displaying Page numbers. 
@@ -70,7 +70,7 @@
      
     <%--For displaying Next link --%>
     <c:if test="${currentPage lt noOfPages}">
-        <td><a href="appointments?page=${currentPage + 1}">Next</a></td>
+        <td><a href="appointments?page=${currentPage + 1}"><fmt:message key="Next" /></a></td>
     </c:if>
 </body>
 </html>

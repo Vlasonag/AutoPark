@@ -3,6 +3,7 @@ package controller.command;
 
 import java.sql.SQLException;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,8 +23,8 @@ public class DriverAppointmentCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request) {
 		final HttpSession session = request.getSession();
-		String login = request.getParameter("login");
-		String password = request.getParameter("password");
+		String login = (String) request.getSession().getAttribute("login");
+		String password = (String) request.getSession().getAttribute("password");
 		AppointmentDTO app = driverAppointmentService.getAppointmentByLogin(login);
 		ROLE role = (ROLE) session.getAttribute("role");
 		try {

@@ -45,6 +45,7 @@ import controller.command.LoginExistPageCommand;
 import controller.command.LoginPageCommand;
 import controller.command.LogoutCommand;
 import controller.command.MakeAnAppointmentCommand;
+import controller.command.NoAppointmentsPageCommand;
 import controller.command.PasswordExistPageCommand;
 import controller.command.RegistrationCommand;
 import controller.command.RegistrationPageCommand;
@@ -87,6 +88,7 @@ public class Servlet extends HttpServlet {
         commands.put("wrong_role", new WrongRoleErrorCommand());
         commands.put("password_exist_error", new PasswordExistPageCommand());
         commands.put("login_exist_error", new LoginExistPageCommand());
+        commands.put("noappointments", new NoAppointmentsPageCommand());
     }
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import model.entity.AppointmentDTO;
@@ -14,5 +15,5 @@ public interface AppointmentDao extends GenericDao<AppointmentDTO>  {
 
 	int getNumberOfAppointments();
 	
-	List<AppointmentDTO> findAllForPage(int start, int recordsOnPage);
+	List<AppointmentDTO> findAllForPage(int start, int recordsOnPage) throws SQLException;
 }

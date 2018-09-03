@@ -1,5 +1,6 @@
 package controller.command;
 
+import java.sql.SQLException;
 import java.util.List; 
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +25,16 @@ public class AllAppointmentCommand implements Command{
 		if (role.toString().equals("ADMIN")) {
 			int page = 1;
 	        int recordsPerPage = 1;
+	        List<AppointmentDTO> applist;
 	        if(request.getParameter("page") != null) {
 	        	page = Integer.parseInt(request.getParameter("page"));
 	        }
-	        List<AppointmentDTO> applist = showAllAppointmentsService.getAllForPage((page-1)*recordsPerPage,
-                    recordsPerPage);
+	        try {
+				applist = showAllAppointmentsService.getAllForPage((page-1)*recordsPerPage,
+				        recordsPerPage);
+			} catch (SQLException e) {
+				return "/noappointments";
+			}
 			int noOfRecords  = showAllAppointmentsService.getNumberOfAppointments();
 			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 			request.setAttribute("applist", applist);

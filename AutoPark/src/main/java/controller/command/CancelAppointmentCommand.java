@@ -1,5 +1,6 @@
 package controller.command;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,8 +33,13 @@ public class CancelAppointmentCommand implements Command{
 			cancelAppointmentService.cancelAppointment(id, number);
 			logger.info("This is info : login = " + session.getAttribute("login") + "| role = " 
 			+ session.getAttribute("role") + " отменил назначение по: driver_id = " + id + ", car_number = " + number);
-			List<AppointmentDTO> applist = cancelAppointmentService.getAllForPage((page-1)*recordsPerPage,
-                    recordsPerPage);
+			List<AppointmentDTO> applist;
+			try {
+				applist = cancelAppointmentService.getAllForPage((page-1)*recordsPerPage,
+				        recordsPerPage);
+			} catch (SQLException e) {
+				return "/noappointments";
+			}
 			int noOfRecords  = cancelAppointmentService.getNumberOfAppointments();
 			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 			System.out.println();

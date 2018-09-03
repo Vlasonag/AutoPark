@@ -136,9 +136,9 @@ public class JDBCAppointmentDao implements AppointmentDao{
 		
 	}
 	@Override
-	public List<AppointmentDTO> findAllForPage(int start, int recordsOnPage) {
+	public List<AppointmentDTO> findAllForPage(int start, int recordsOnPage) throws SQLException {
 		List<AppointmentDTO> applist = new ArrayList<>();
-		try (Statement ps = connection.createStatement()){
+		Statement ps = connection.createStatement();
 			ResultSet rs = ps.executeQuery(
 					"SELECT * FROM appointment");
 			for(int i = 0; i < start + recordsOnPage; i++) {
@@ -147,10 +147,8 @@ public class JDBCAppointmentDao implements AppointmentDao{
 					applist.add(new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8)));
 				}
 			}
-		}
-		catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+		
+		
 		return applist;
 	}
 

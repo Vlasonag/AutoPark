@@ -34,7 +34,6 @@ public class MakeAnAppointmentCommand implements Command {
 				String login = makeAnAppointmentService.getLoginById(id);
 				String model = makeAnAppointmentService.getModelByNumber(number);
 				int intRoute = Integer.parseInt(route[1]);
-				System.out.println(route[0] + " " + intRoute + " " + number + " " + model + " " + login + " " + id + " " + r_id);
 				makeAnAppointmentService.setCarBusy(number);
 				logger.info("This is info : login: " + session.getAttribute("login") + "| role: " 
 						+ session.getAttribute("role") + " сделал водителя занятым по: number = " + number);
