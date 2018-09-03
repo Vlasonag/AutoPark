@@ -23,8 +23,8 @@
 	<h1><fmt:message key="Login_as_Admin" /></h1><br>
         <form method="POST" action="AuthAdminFilter">
 
-            <input type="text" required placeholder="login" name="login"><br>
-            <input type="password" required placeholder="password" name="password"><br><br>
+            <fmt:message key="LOGIN" /> <input type="text" required placeholder="login" name="login"><br>
+            <fmt:message key="PASSWORD" /> <input type="password" required placeholder="password" name="password"><br><br>
             <input class="button" type="submit" value="<fmt:message key="Login" />">
 
         </form>
