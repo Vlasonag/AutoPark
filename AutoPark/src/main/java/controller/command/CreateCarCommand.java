@@ -1,6 +1,5 @@
 package controller.command;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import model.entity.Car;
 import model.service.CreateCarService;
 
 public class CreateCarCommand implements Command {
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	CreateCarService createCarService = new CreateCarService();
 	public CreateCarCommand(CreateCarService createCarService) {
 		this.createCarService = createCarService;

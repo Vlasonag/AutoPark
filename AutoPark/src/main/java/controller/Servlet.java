@@ -1,10 +1,8 @@
 package controller;
 
-import java.io.IOException;     
-import java.io.UnsupportedEncodingException;
+import java.io.IOException; 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +18,6 @@ import model.service.DeleteCarService;
 import model.service.DeleteRouteService;
 import model.service.DriverAppointmentService;
 import model.service.DriverConfirmationService;
-import model.service.LoginAsAdminService;
 import model.service.LoginService;
 import model.service.MakeAnAppointmentService;
 import model.service.RegistrationService;

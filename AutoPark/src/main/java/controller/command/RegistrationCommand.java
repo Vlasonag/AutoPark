@@ -16,7 +16,6 @@ import model.service.RegistrationService;
 public class RegistrationCommand implements Command, LoginAndPasswordRegex{
 	Pattern pattern;
 	Matcher matcher;
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	
 	
 	RegistrationService registrationService = new RegistrationService();

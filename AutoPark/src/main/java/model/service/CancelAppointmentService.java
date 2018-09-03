@@ -7,15 +7,20 @@ import model.dao.DaoFactory;
 import model.entity.AppointmentDTO;
 
 public class CancelAppointmentService {
-	public List<AppointmentDTO> getAll() {
+	public List<AppointmentDTO> getAllForPage(int i, int recordsPerPage) {
 		DaoFactory factory = DaoFactory.getInstance();		
         AppointmentDao dao = factory.createAppointmentDao();
-        return dao.findAll();
+        return dao.findAllForPage(i, recordsPerPage);
 	}
 	
 	public void cancelAppointment(int id, String number) {
 		DaoFactory factory = DaoFactory.getInstance();
         AppointmentDao dao = factory.createAppointmentDao();
         dao.cancelAppointment(id, number);
+	}
+	public int getNumberOfAppointments() {
+		DaoFactory factory = DaoFactory.getInstance();
+        AppointmentDao dao = factory.createAppointmentDao();
+        return dao.getNumberOfAppointments();
 	}
 }

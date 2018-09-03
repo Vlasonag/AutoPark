@@ -12,7 +12,6 @@ import model.entity.Route;
 import model.service.DeleteRouteService;
 
 public class DeleteRouteCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	DeleteRouteService deleteRouteService = new DeleteRouteService();
 	public DeleteRouteCommand(DeleteRouteService deleteRouteService) {
 		this.deleteRouteService = deleteRouteService;

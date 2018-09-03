@@ -10,7 +10,6 @@ import model.entity.AppointmentDTO;
 import model.service.ConfirmAppointmentService;
 
 public class ConfirmAppointmentCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	ConfirmAppointmentService confirmAppointmentService = new ConfirmAppointmentService();
 	
 	public ConfirmAppointmentCommand (ConfirmAppointmentService confirmAppointmentService) {

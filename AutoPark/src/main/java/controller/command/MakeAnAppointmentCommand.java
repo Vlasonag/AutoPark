@@ -14,7 +14,6 @@ import model.entity.Route;
 import model.service.MakeAnAppointmentService;
 
 public class MakeAnAppointmentCommand implements Command {
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	MakeAnAppointmentService makeAnAppointmentService = new MakeAnAppointmentService();
 	
 	public MakeAnAppointmentCommand(MakeAnAppointmentService makeAnAppointmentService) {

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 public class AdminLoginPageCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
+	
 	@Override
 	public String execute(HttpServletRequest request) {
 		final HttpSession session = request.getSession();

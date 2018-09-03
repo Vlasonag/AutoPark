@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 
 public class RegistrationPageCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	
 	@Override
 	public String execute(HttpServletRequest request) {

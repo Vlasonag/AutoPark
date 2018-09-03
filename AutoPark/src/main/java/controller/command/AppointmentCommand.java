@@ -14,7 +14,6 @@ import model.entity.Route;
 import model.service.ShowAppointmentsService;
 
 public class AppointmentCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	ShowAppointmentsService showAppointmentsService = new ShowAppointmentsService();
 	public AppointmentCommand(ShowAppointmentsService showAppointmentsService) {
 		this.showAppointmentsService = showAppointmentsService;

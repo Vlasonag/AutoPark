@@ -13,7 +13,6 @@ import model.entity.AppointmentDTO;
 import model.service.DriverAppointmentService;
 
 public class DriverAppointmentCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	DriverAppointmentService driverAppointmentService = new DriverAppointmentService();
 	
 	public DriverAppointmentCommand(DriverAppointmentService driverAppointmentService) {

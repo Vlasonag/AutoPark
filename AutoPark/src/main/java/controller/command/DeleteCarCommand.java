@@ -1,6 +1,6 @@
 package controller.command;
 
-import java.io.UnsupportedEncodingException;
+ 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,6 @@ import model.entity.Car;
 import model.service.DeleteCarService;
 
 public class DeleteCarCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	DeleteCarService deleteCarService = new DeleteCarService();
 	public DeleteCarCommand(DeleteCarService deleteCarService) {
 		this.deleteCarService = deleteCarService;

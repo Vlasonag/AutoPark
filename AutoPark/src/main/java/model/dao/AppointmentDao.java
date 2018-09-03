@@ -1,5 +1,7 @@
 package model.dao;
 
+import java.util.List;
+
 import model.entity.AppointmentDTO;
 
 public interface AppointmentDao extends GenericDao<AppointmentDTO>  {
@@ -9,5 +11,8 @@ public interface AppointmentDao extends GenericDao<AppointmentDTO>  {
 	AppointmentDTO getAppointmentByLogin(String login);
 
 	void confirmAppointment(String login);
+
+	int getNumberOfAppointments();
 	
+	List<AppointmentDTO> findAllForPage(int start, int recordsOnPage);
 }

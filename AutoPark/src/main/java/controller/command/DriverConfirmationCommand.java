@@ -13,8 +13,7 @@ import model.service.DriverConfirmationService;
 
 
 public class DriverConfirmationCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
-
+	
 	DriverConfirmationService driverConfirmationService = new DriverConfirmationService();
 	
 	public DriverConfirmationCommand(DriverConfirmationService driverConfirmationService) {

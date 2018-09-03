@@ -14,7 +14,6 @@ import model.entity.Route;
 import model.service.ShowRoutesService;
 
 public class RoutesCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	ShowRoutesService showRoutesService = new ShowRoutesService();
 	public RoutesCommand(ShowRoutesService showRoutesService) {
 		this.showRoutesService = showRoutesService;

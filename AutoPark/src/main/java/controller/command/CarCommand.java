@@ -12,7 +12,6 @@ import model.entity.Car;
 import model.service.ShowCarsService;
 
 public class CarCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	ShowCarsService showCarsService = new ShowCarsService();
 	public CarCommand(ShowCarsService showCarsService) {
 		this.showCarsService = showCarsService;

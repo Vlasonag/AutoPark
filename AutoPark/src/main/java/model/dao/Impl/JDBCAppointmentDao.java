@@ -21,9 +21,16 @@ public class JDBCAppointmentDao implements AppointmentDao{
 	@Override
 	public void create(AppointmentDTO entity) throws SQLException {
 		Statement ps = connection.createStatement();
-		System.out.println(entity.getRoute_name() + entity.getRoute_distance() +entity.getCar_number() +entity.getCar_model() + entity.getDriver_id()+entity.getDriver_login()+ " "+entity.getRoute_id());
 			ps.executeUpdate(
-					"INSERT INTO `autopark`.`appointment` (`appointment_route_name`, `appointment_route_distance`, `appointment_car_number`, `appointment_car_model`, `appointment_driver_id`, `appointment_driver_login`, `appointment_is_confirmed`, `appointment_route_id`) VALUES ('"+entity.getRoute_name()+"', '"+entity.getRoute_distance()+"', '"+entity.getCar_number()+"', '"+entity.getCar_model()+"', '"+entity.getDriver_id()+"', '"+entity.getDriver_login()+"', '0', '"+entity.getRoute_id()+"')");
+					"INSERT INTO `autopark`.`appointment` (`appointment_route_name`, "
+					+ "`appointment_route_distance`, `appointment_car_number`, "
+					+ "`appointment_car_model`, `appointment_driver_id`, "
+					+ "`appointment_driver_login`, `appointment_is_confirmed`, "
+					+ "`appointment_route_id`) "
+					+ "VALUES ('"+entity.getRoute_name()+"', '"+entity.getRoute_distance()+
+					"', '"+entity.getCar_number()+"', '"+entity.getCar_model()+
+					"', '"+entity.getDriver_id()+"', '"+entity.getDriver_login()
+					+"', '0', '"+entity.getRoute_id()+"')");
 			
 		}
 
@@ -111,6 +118,40 @@ public class JDBCAppointmentDao implements AppointmentDao{
             throw new RuntimeException(e);
         }
 		
+	}
+	@Override
+	public int getNumberOfAppointments() {
+		int i = 0;
+		try (Statement ps = connection.createStatement()){
+			ResultSet rs = ps.executeQuery(
+					"SELECT * FROM appointment");
+			while ( rs.next() ){
+				i++;
+			}
+		}
+		catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+		return i;
+		
+	}
+	@Override
+	public List<AppointmentDTO> findAllForPage(int start, int recordsOnPage) {
+		List<AppointmentDTO> applist = new ArrayList<>();
+		try (Statement ps = connection.createStatement()){
+			ResultSet rs = ps.executeQuery(
+					"SELECT * FROM appointment");
+			for(int i = 0; i < start + recordsOnPage; i++) {
+				rs.next();
+				if(i >= start && i < start + recordsOnPage) {
+					applist.add(new AppointmentDTO(rs.getString(1), rs.getInt(2), rs.getString(3),rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8)));
+				}
+			}
+		}
+		catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+		return applist;
 	}
 
 }

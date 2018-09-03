@@ -1,6 +1,5 @@
 package controller.command;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import model.entity.Driver;
 import model.service.ConfirmDriverByIdService;
 
 public class ConfirmDriverByIdCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	ConfirmDriverByIdService confirmDriverByIdService = new ConfirmDriverByIdService();
 	public ConfirmDriverByIdCommand (ConfirmDriverByIdService confirmDriverByIdService) {
 		this.confirmDriverByIdService = confirmDriverByIdService;

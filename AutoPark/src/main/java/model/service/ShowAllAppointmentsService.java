@@ -7,9 +7,14 @@ import model.dao.DaoFactory;
 import model.entity.AppointmentDTO;
 
 public class ShowAllAppointmentsService {
-	public List<AppointmentDTO> getAll() {
+	public List<AppointmentDTO> getAllForPage(int i, int recordsPerPage) {
 		DaoFactory factory = DaoFactory.getInstance();		
         AppointmentDao dao = factory.createAppointmentDao();
-        return dao.findAll();
+        return dao.findAllForPage(i, recordsPerPage);
+	}
+	public int getNumberOfAppointments() {
+		DaoFactory factory = DaoFactory.getInstance();
+        AppointmentDao dao = factory.createAppointmentDao();
+        return dao.getNumberOfAppointments();
 	}
 }

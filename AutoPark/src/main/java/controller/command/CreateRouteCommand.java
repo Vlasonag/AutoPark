@@ -1,6 +1,6 @@
 package controller.command;
 
-import java.io.UnsupportedEncodingException;
+ 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,6 @@ import model.entity.Route;
 import model.service.CreateRouteService;
 
 public class CreateRouteCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
 	CreateRouteService createRouteService = new CreateRouteService();
 	public CreateRouteCommand(CreateRouteService createRouteService) {
 		this.createRouteService = createRouteService;

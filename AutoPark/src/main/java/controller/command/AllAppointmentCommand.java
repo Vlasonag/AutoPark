@@ -12,7 +12,7 @@ import model.entity.AppointmentDTO;
 import model.service.ShowAllAppointmentsService;
 
 public class AllAppointmentCommand implements Command{
-	final static Logger logger = Logger.getLogger(AdminLoginPageCommand.class);
+	
 	ShowAllAppointmentsService showAllAppointmentsService = new ShowAllAppointmentsService();
 	public AllAppointmentCommand(ShowAllAppointmentsService showAllAppointmentsService) {
 		this.showAllAppointmentsService = showAllAppointmentsService;
@@ -22,8 +22,18 @@ public class AllAppointmentCommand implements Command{
 		final HttpSession session = request.getSession();
 		ROLE role = (ROLE) session.getAttribute("role");
 		if (role.toString().equals("ADMIN")) {
-			List<AppointmentDTO> applist = showAllAppointmentsService.getAll();
+			int page = 1;
+	        int recordsPerPage = 1;
+	        if(request.getParameter("page") != null) {
+	        	page = Integer.parseInt(request.getParameter("page"));
+	        }
+	        List<AppointmentDTO> applist = showAllAppointmentsService.getAllForPage((page-1)*recordsPerPage,
+                    recordsPerPage);
+			int noOfRecords  = showAllAppointmentsService.getNumberOfAppointments();
+			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 			request.setAttribute("applist", applist);
+			request.setAttribute("noOfPages", noOfPages);
+            request.setAttribute("currentPage", page);
 			logger.info("This is info : login = " + session.getAttribute("login") +
 					"| role = " + session.getAttribute("role") + " зашел на страницу: appointments");
 			return "cappointment.jsp";
